@@ -19,5 +19,3 @@ export const theme = {
     sxx: '1.4rem',
   },
 };
-
-// test
