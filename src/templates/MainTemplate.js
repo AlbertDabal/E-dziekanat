@@ -13,6 +13,8 @@ const MainTemplate = () => (
     <ThemeProvider theme={theme}>
       <Heading big>TEST</Heading>
       <Paragraph>TEST</Paragraph>
+      <Alert type="error">NEW</Alert>
+      <Alert type="warning">NEW</Alert>
       <Alert>NEW</Alert>
       <Button
       >PRZYCISK</Button>
