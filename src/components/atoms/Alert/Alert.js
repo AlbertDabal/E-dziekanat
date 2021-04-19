@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-
+import styled, { css } from 'styled-components';
+// prettier-ignore
 const Alert = styled.h6`
   text-align: center;
   color: white;
@@ -8,6 +8,18 @@ const Alert = styled.h6`
   background-color: ${({ theme }) => theme.alertColorSucces};
   font-size: ${({ theme }) => theme.fontSize.sx};
   width: 60px;
+
+  ${({ type }) => type === 'error'
+    && css`
+     background-color: ${({ theme }) => theme.alertColorError};
+    `}
+
+    ${({ type }) => type === 'warning'
+    && css`
+     background-color: ${({ theme }) => theme.alertColorWarning};
+    `}
+
+    
 `;
 
 export default Alert;
