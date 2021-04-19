@@ -9,7 +9,7 @@ const Alert = styled.h6`
   font-size: ${({ theme }) => theme.fontSize.sx};
   width: 60px;
 
-  ${({ type }) => type
+  ${({ type }) => type === 'error'
     && css`
      background-color: ${({ theme }) => theme.alertColorError};
     `}
