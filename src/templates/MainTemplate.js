@@ -5,6 +5,7 @@ import { theme } from 'theme/MainThame';
 import Heading from 'components/atoms/Heading/Heading';
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
 import Alert from 'components/atoms/Alert/Alert';
+import Button from 'components/atoms/Button/Button';
 
 const MainTemplate = () => (
   <div>
@@ -13,6 +14,8 @@ const MainTemplate = () => (
       <Heading big>TEST</Heading>
       <Paragraph>TEST</Paragraph>
       <Alert>NEW</Alert>
+      <Button
+      >PRZYCISK</Button>
     </ThemeProvider>
   </div>
 );
