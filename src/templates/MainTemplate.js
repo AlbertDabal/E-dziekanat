@@ -9,6 +9,7 @@ import Button from 'components/atoms/Button/Button';
 
 const MainTemplate = () => (
   <div>
+
     <GlobalStyle />
     <ThemeProvider theme={theme}>
       <Heading big>TEST</Heading>
@@ -16,8 +17,7 @@ const MainTemplate = () => (
       <Alert type="error">NEW</Alert>
       <Alert type="warning">NEW</Alert>
       <Alert>NEW</Alert>
-      <Button
-      >PRZYCISK</Button>
+      {/* <Button>PRZYCISK</Button> */}
     </ThemeProvider>
   </div>
 );
