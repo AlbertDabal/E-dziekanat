@@ -1,19 +1,19 @@
 import styled from 'styled-components';
 
-const Input = styled.input`
+const TextArea = styled.textarea`
   border-radius: 30px;
-  height: 70px;
   border: 1px solid ${({ theme }) => theme.borderColor};
-  padding: 0;
   outline: none;
   font-size: ${({ theme }) => theme.fontSize.sx};
   color: black;
   font-family: 'Poppins', sans-serif;
-  padding: 0 30px;
+  padding: 30px 0 0 30px;
+  height: 200px;
+  resize: none;
 
   ::placeholder {
     color: ${({ theme }) => theme.borderColor};
   }
 `;
 
-export default Input;
+export default TextArea;

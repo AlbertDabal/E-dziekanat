@@ -22,6 +22,7 @@ const Root = () => (
       <Route exact path={routes.login} component={Login} />
       <Route exact path={routes.dashboard} component={Dashboard} />
       <Route exact path={routes.lessonPlan} component={LessonPlan} />
+      <Route exact path={routes.test} component={MainTemplate} />
     </Switch>
   </Router>
 );

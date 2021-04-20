@@ -1,15 +1,23 @@
 import React from 'react';
 import GlobalStyle from 'theme/GlobalStyle';
-import { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { theme } from 'theme/MainThame';
 import Heading from 'components/atoms/Heading/Heading';
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
 import Alert from 'components/atoms/Alert/Alert';
 import Button from 'components/atoms/Button/Button';
+import Input from 'components/atoms/Input/Input';
+import TextArea from 'components/atoms/Input/TextArea';
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+`;
 
 const MainTemplate = () => (
-  <div>
-
+  <Wrapper>
     <GlobalStyle />
     <ThemeProvider theme={theme}>
       <Heading big>TEST</Heading>
@@ -17,9 +25,13 @@ const MainTemplate = () => (
       <Alert type="error">NEW</Alert>
       <Alert type="warning">NEW</Alert>
       <Alert>NEW</Alert>
-      {/* <Button>PRZYCISK</Button> */}
+      <Button>Dalej</Button>
+      <Button type="edytuj">Edytuj</Button>
+      <Button type="zaloguj">Zaloguj</Button>
+      <Input placeholder="Nazwa użytkownika" />
+      <TextArea placeholder="Nazwa użytkownika" />
     </ThemeProvider>
-  </div>
+  </Wrapper>
 );
 
 export default MainTemplate;
