@@ -19,7 +19,6 @@ const GlobalStyle = createGlobalStyle`
     }
 
     body{
-        font-size: 1.6rem;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         font-family: 'Poppins', sans-serif;
