@@ -11,6 +11,9 @@ export const theme = {
   teacherColor: 'hsl(182, 43%, 76%)',
   workerColor: 'hsl(355, 78%, 56%)',
 
+  borderColor: 'hsl(240, 2%, 80%)',
+  borderButtonColor: 'hsl(182, 43%, 76%)',
+
   fontSize: {
     l: '3.6rem',
     m: '2.6rem',
