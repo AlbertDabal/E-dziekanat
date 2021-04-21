@@ -9,6 +9,8 @@ import Button from 'components/atoms/Button/Button';
 import Input from 'components/atoms/Input/Input';
 import TextArea from 'components/atoms/Input/TextArea';
 
+import Sidebar from 'components/organism/Navigation/Sidebar';
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -20,8 +22,8 @@ const MainTemplate = () => (
   <Wrapper>
     <GlobalStyle />
     <ThemeProvider theme={theme}>
-      <Heading big>TEST</Heading>
-      <Paragraph>TEST</Paragraph>
+      <Sidebar />
+      <Paragraph>--------------------------------</Paragraph>
       <Alert type="error">NEW</Alert>
       <Alert type="warning">NEW</Alert>
       <Alert>NEW</Alert>
