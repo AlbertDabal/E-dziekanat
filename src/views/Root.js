@@ -1,7 +1,7 @@
 import React from 'react';
 import MainTemplate from 'templates/MainTemplate';
 import GlobalStyle from 'theme/GlobalStyle';
-import styled, { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from 'styled-components';
 import { theme } from 'theme/MainThame';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Login from 'views/Login';
