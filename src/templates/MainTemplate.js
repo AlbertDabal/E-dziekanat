@@ -27,7 +27,7 @@ const MainTemplate = () => (
       <Alert>NEW</Alert>
       <Button>Dalej</Button>
       <Button type="edytuj">Edytuj</Button>
-      <Button type="zaloguj">Zaloguj</Button>
+      <Button type="zaloguj">ZALOGUJ</Button>
       <Input placeholder="Nazwa użytkownika" />
       <TextArea placeholder="Nazwa użytkownika" />
     </ThemeProvider>

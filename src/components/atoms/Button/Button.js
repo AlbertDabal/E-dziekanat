@@ -6,11 +6,11 @@ const Button = styled.button`
   border-radius: 30px;
   color: white;
   background-color: ${({ theme }) => theme.alertColorSucces};
-  font-size: ${({ theme }) => theme.fontSize.sx};
-  font-family: 'Poppins', sans-serif;
-  text-align: center;
+  font-size: 20px;
+  font-weight: 600px;
   border: 2px solid transparent;
   outline: none;
+  font-family: 'Poppins', sans-serif;
 
   ${({ type }) => type === 'edytuj'
   && css`
@@ -19,16 +19,13 @@ const Button = styled.button`
   ${({ type }) => type === 'zaloguj'
   && css`
       background-color: ${({ theme }) => theme.studentColor};
-      width: 570px;
-      height: 140px;
-      
+      height: 70px;
+      width: 80%;
+
       &:hover {
-        border: 2px solid #A8DADC;
+        border: 2px solid #a8dadc;
       }
     `}
-
-    
-
 `;
 
 export default Button;

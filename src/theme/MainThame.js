@@ -2,6 +2,7 @@ export const theme = {
   thameColor: 'hsl(211, 33%, 27%)',
   secondaryColor: 'hsl(182, 43%, 76%)',
   primaryButtonColor: 'hsl(203, 39%, 44%)',
+  primaryButtonColorOpacity: 'hsla(203,39%,44%,0.9)',
 
   alertColorError: 'hsl(0, 67%, 48%)',
   alertColorWarning: 'hsl(57, 73%, 69%)',
