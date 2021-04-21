@@ -28,8 +28,10 @@ const MainTemplate = () => (
       <Alert type="warning">NEW</Alert>
       <Alert>NEW</Alert>
       <Button>Dalej</Button>
-      <Button type="edytuj">Edytuj</Button>
-      <Button type="zaloguj">ZALOGUJ</Button>
+      <Button typeButton="edytuj">Edytuj</Button>
+      <Button typeButton="zaloguj">ZALOGUJ</Button>
+      <Button typeButton="czesne">ZALOGUJ</Button>
+      <Button typeButton="stypendia">ZALOGUJ</Button>
       <Input placeholder="Nazwa użytkownika" />
       <TextArea placeholder="Nazwa użytkownika" />
     </ThemeProvider>
