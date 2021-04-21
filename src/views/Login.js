@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import WellcomeTemplate from 'templates/WellcomeTemplate';
 import styled from 'styled-components';
 import Input from 'components/atoms/Input/Input';
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
 import Button from 'components/atoms/Button/Button';
+import PropTypes from 'prop-types';
 
 const Wrapper = styled.div`
   display: flex;
@@ -48,20 +49,32 @@ const Line = styled.hr`
   background-color: ${({ theme }) => theme.borderColor};
 `;
 
-const Login = () => (
-  <WellcomeTemplate>
-    <Wrapper>
-      <Form>
-        <Heading>Zaloguj się</Heading>
-        <InputStyled placeholder="Nazwa użytkownika" />
-        <InputStyled placeholder="Hasło" type="password" />
-        <ButtonStyled type="zaloguj">ZALOGUJ</ButtonStyled>
-        <Line />
-        <LinkStyled>Nie pamiętasz Hasła?</LinkStyled>
-        <LinkStyled>Nie pamiętasz Nazwy Użytkownika?</LinkStyled>
-      </Form>
-    </Wrapper>
-  </WellcomeTemplate>
-);
+const Login = ({ match }) => {
+  useEffect(() => {
+    console.log(match.params.id);
+  }, []);
+
+  const Zaloguj = () => {};
+
+  return (
+    <WellcomeTemplate>
+      <Wrapper>
+        <Form>
+          <Heading>Zaloguj się</Heading>
+          <InputStyled placeholder="Nazwa użytkownika" />
+          <InputStyled placeholder="Hasło" type="password" />
+          <ButtonStyled type="zaloguj">ZALOGUJ</ButtonStyled>
+          <Line />
+          <LinkStyled>Nie pamiętasz Hasła?</LinkStyled>
+          <LinkStyled>Nie pamiętasz Nazwy Użytkownika?</LinkStyled>
+        </Form>
+      </Wrapper>
+    </WellcomeTemplate>
+  );
+};
+
+Login.propTypes = {
+  match: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default Login;

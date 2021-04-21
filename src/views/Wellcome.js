@@ -50,11 +50,11 @@ const Wellcome = () => (
   <WellcomeTemplate>
     <Wrapper>
       <Heading>Wybierz swoją role</Heading>
-      <ButtonChangeRole to="/login">STUDENT</ButtonChangeRole>
-      <ButtonChangeRole to="/login" role="teacher">
-        NAUCZYCIEL
+      <ButtonChangeRole to="/login/student">STUDENT</ButtonChangeRole>
+      <ButtonChangeRole to="/login/wykladowca" role="teacher">
+        WYKŁADOWCA
       </ButtonChangeRole>
-      <ButtonChangeRole to="/login" role="worker">
+      <ButtonChangeRole to="/login/dziekanat" role="worker">
         PRACOWNIK
       </ButtonChangeRole>
     </Wrapper>
