@@ -10,6 +10,8 @@ import Input from 'components/atoms/Input/Input';
 import TextArea from 'components/atoms/Input/TextArea';
 
 import Sidebar from 'components/organism/Navigation/Sidebar';
+import LessonPlanItem from 'components/organism/LessonPlan/LessonPlanItem';
+import LessonPlanList from 'components/organism/LessonPlan/LessonPlanList';
 
 const Wrapper = styled.div`
   display: flex;
@@ -34,6 +36,7 @@ const MainTemplate = () => (
       <Button typeButton="stypendia">ZALOGUJ</Button>
       <Input placeholder="Nazwa użytkownika" />
       <TextArea placeholder="Nazwa użytkownika" />
+      <LessonPlanList />
     </ThemeProvider>
   </Wrapper>
 );
