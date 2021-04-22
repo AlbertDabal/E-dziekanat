@@ -14,6 +14,7 @@ export const theme = {
 
   borderColor: 'hsl(240, 2%, 80%)',
   borderButtonColor: 'hsl(182, 43%, 76%)',
+  testColor: 'hsl(211, 33%, 27%)',
 
   fontSize: {
     l: '3.6rem',
