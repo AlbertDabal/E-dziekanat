@@ -1,68 +1,64 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const routes = [
-  {
-    path: '/',
-    exact: true,
-    sidebar: () => <div>home!</div>,
-    main: () => <h2>Home</h2>,
-  },
-  {
-    path: '/bubblegum',
-    sidebar: () => <div>bubblegum!</div>,
-    main: () => <h2>Bubblegum</h2>,
-  },
-  {
-    path: '/shoelaces',
-    sidebar: () => <div>shoelaces!</div>,
-    main: () => <h2>Shoelaces</h2>,
-  },
-];
+import NavigationMainData from './NavigationMainData';
 
-const NavWrapper = styled.div`
+const NavWrapper = styled.nav`
   width: 100%;
   display: flex;
   padding-top: 1.6rem;
 `;
+
+const NavList = styled.ul`
+  width: 100%;
+  list-style: none;
+`;
+
 const NavItem = styled.li`
- font-size: 1.6rem;
- text-align: left;
- outline: none;
-text-decoration: none;
+  font-size: 1.6rem;
+  text-align: left;
+  outline: none;
+  text-decoration: none;
+
+  :hover {
+    background-color: #24416B;
+    border-left: 4px solid #ffffff;
+    transition: all .3s;
+  }
+`;
+
+const NavItemLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  padding: 11px 20px;
+
+  > svg {
+    font-size: 18px;
+    padding-bottom: 2px;
+    margin: 0 20px;
+  }
+
+  > span {
+    font-weight: 100;
+  }
 `;
 
 const NavigationMain = () => (
-  <Router>
-    <NavWrapper>
-      <div>
-        <ul style={{ listStyleType: 'none', padding: 0 }}>
-          <NavItem>
-            <Link to="/dashboard">Kokpit</Link>
-          </NavItem>
-          <NavItem>
-            <Link to="/deans">Dziekanat</Link>
-          </NavItem>
-          <NavItem>
-            <Link to="/marks">Oceny</Link>
-          </NavItem>
-          <NavItem>
-            <Link to="/payment">Płatności</Link>
-          </NavItem>
-          <NavItem>
-            <Link to="/plan">Plan</Link>
-          </NavItem>
-          <NavItem>
-            <Link to="/news">Aktualności</Link>
-          </NavItem>
-          <NavItem>
-            <Link to="/documents">Dokumenty</Link>
-          </NavItem>
-        </ul>
-      </div>
-    </NavWrapper>
-  </Router>
+  <NavWrapper>
+    <NavList>
+      {NavigationMainData.map((item) => (
+        <NavItem key={item.id} className={item.cName}>
+          <NavItemLink to={item.path}>
+            {item.icon}
+            <span>{item.title}</span>
+          </NavItemLink>
+        </NavItem>
+      ))}
+    </NavList>
+  </NavWrapper>
 );
 
 export default NavigationMain;

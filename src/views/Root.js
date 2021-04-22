@@ -6,8 +6,8 @@ import { theme } from 'theme/MainThame';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Login from 'views/Login';
 import Dashboard from 'views/Dashboard';
-import Wellcome from 'views/Wellcome';
 import LessonPlan from 'views/LessonPlan';
+import Wellcome from 'views/Wellcome';
 import { routes } from 'routes';
 
 const Root = () => (

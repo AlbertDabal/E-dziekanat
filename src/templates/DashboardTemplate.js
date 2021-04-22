@@ -2,16 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import Sidebar from 'components/organism/Navigation/Sidebar';
+
 const Wrapper = styled.div`
-  background-color: ${({ theme }) => theme.alertColorSucces};
+  display: flex;
 `;
 
 const DashboardTemplate = ({ children }) => (
   <Wrapper>
-    <div>
-      <h1>Test h1</h1>
-      {children}
-    </div>
+    <Sidebar />
+    {children}
   </Wrapper>
 );
 
