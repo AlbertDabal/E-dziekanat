@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import NavigationMainData from './NavigationMainData';
+import NavigationMainData from 'data/NavigationMainData';
 
 const NavWrapper = styled.nav`
   width: 100%;
@@ -22,9 +22,9 @@ const NavItem = styled.li`
   text-decoration: none;
 
   :hover {
-    background-color: #24416B;
+    background-color: #24416b;
     border-left: 4px solid #ffffff;
-    transition: all .3s;
+    transition: all 0.3s;
   }
 `;
 
