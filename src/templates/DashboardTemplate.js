@@ -21,8 +21,10 @@ const MainWrapper = styled.div`
 `;
 
 const ContentWrapper = styled.div`
+  height: 100%;
   display: flex;
   width: 100%;
+  align-items: flex-start;
 `;
 
 const DashboardTemplate = ({ children }) => (

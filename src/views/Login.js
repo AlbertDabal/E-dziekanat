@@ -65,7 +65,7 @@ const Login = ({ match }) => {
     setErrorLogin(null);
     e.preventDefault();
     const res = await axios
-      .post('https://localhost:44326/api/logowanie/zaloguj', {
+      .post('http://178.43.51.218/api/logowanie/zaloguj', {
         login: e.target[0].value,
         password: e.target[1].value,
         kod_roli: match.params.id,
