@@ -23,4 +23,10 @@ export const theme = {
     sx: '1.6rem',
     sxx: '1.4rem',
   },
+
+  height: {
+    max: '100%',
+    half: '50%',
+    inhariet: 'inhariet',
+  },
 };

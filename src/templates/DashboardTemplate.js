@@ -23,6 +23,7 @@ const MainWrapper = styled.div`
 const ContentWrapper = styled.div`
   display: flex;
   width: 100%;
+  height: 100%;
 `;
 
 const DashboardTemplate = ({ children }) => (
