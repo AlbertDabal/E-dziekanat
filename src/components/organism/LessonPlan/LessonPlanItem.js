@@ -10,23 +10,23 @@ const Wrapper = styled.div`
   padding: 10px 20px;
   width: 100%;
 
-  ${({ typeLesson }) => typeLesson === 'laboratorium'
+  ${({ typeLesson }) => typeLesson === 'Laboratoria'
   && css`
       background-color: ${({ theme }) => theme.lessonColorLab};
       border-left: 5px solid ${({ theme }) => theme.buttonLessonColorLab};
     `}
-  ${({ typeLesson }) => typeLesson === 'wykład'
+  ${({ typeLesson }) => typeLesson === 'Wykład'
   && css`
       background-color: ${({ theme }) => theme.lessonColorWyk};
       border-left: 5px solid ${({ theme }) => theme.buttonLessonColorWyk};
     `}
-  ${({ typeLesson }) => typeLesson === 'projekt'
+  ${({ typeLesson }) => typeLesson === 'Ćwiczenia'
   && css`
       background-color: ${({ theme }) => theme.lessonColorPro};
       border-left: 5px solid ${({ theme }) => theme.buttonLessonColorPro};
       }
     `}
-  ${({ typeLesson }) => typeLesson === 'seminarium'
+  ${({ typeLesson }) => typeLesson === 'Seminarium'
   && css`
       background-color: ${({ theme }) => theme.lessonColorSem};
       border-left: 5px solid ${({ theme }) => theme.buttonLessonColorSem};
@@ -57,19 +57,19 @@ const Link = styled.a`
   color: white;
   padding: 2px 10px;
 
-  ${({ typeLesson }) => typeLesson === 'laboratorium'
+  ${({ typeLesson }) => typeLesson === 'Laboratoria'
   && css`
       background-color: ${({ theme }) => theme.buttonLessonColorLab};
     `}
-  ${({ typeLesson }) => typeLesson === 'wykład'
+  ${({ typeLesson }) => typeLesson === 'Wykład'
   && css`
       background-color: ${({ theme }) => theme.buttonLessonColorWyk};
     `}
-  ${({ typeLesson }) => typeLesson === 'projekt'
+  ${({ typeLesson }) => typeLesson === 'Ćwiczenia'
   && css`
       background-color: ${({ theme }) => theme.buttonLessonColorPro};
     `}
-  ${({ typeLesson }) => typeLesson === 'seminarium'
+  ${({ typeLesson }) => typeLesson === 'Seminarium'
   && css`
       background-color: ${({ theme }) => theme.buttonLessonColorSem};
     `}
@@ -85,7 +85,8 @@ const LessonPlanItem = ({ dataLessonItem }) => (
   <Wrapper typeLesson={dataLessonItem.Typ}>
     <Title>
       <LessonType>{dataLessonItem.Typ}</LessonType>
-      <Paragraph>{`${dataLessonItem.GodzRozp}-${dataLessonItem.GodzZakon}`}</Paragraph>
+
+      <Paragraph>{`${dataLessonItem.GodzRozp.substr(11, 5)}-${dataLessonItem.GodzZakon.substr(11, 5)}`}</Paragraph>
     </Title>
     <Paragraph>{dataLessonItem.Nazwa}</Paragraph>
     <Bottom>

@@ -7,6 +7,8 @@ import Button from 'components/atoms/Button/Button';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { loggedIn } from 'actions';
 
 const Wrapper = styled.div`
   display: flex;
@@ -53,6 +55,7 @@ const Line = styled.hr`
 `;
 
 const Login = ({ match }) => {
+  const dispatch = useDispatch();
   const [errorLogin, setErrorLogin] = useState(null);
 
   const history = useHistory();
@@ -65,7 +68,7 @@ const Login = ({ match }) => {
     setErrorLogin(null);
     e.preventDefault();
     const res = await axios
-      .post('http://178.43.51.218/api/logowanie/zaloguj', {
+      .post('http://178.43.155.21/api/logowanie/zaloguj', {
         login: e.target[0].value,
         password: e.target[1].value,
         kod_roli: match.params.id,
@@ -80,7 +83,9 @@ const Login = ({ match }) => {
       setErrorLogin('*Nie poprawna nazwa użytkownika lub hasło');
       console.log('nie poprawne hasło');
     } else {
+      dispatch(loggedIn(res.data));
       console.log('poprawne');
+
       history.push('/dashboard');
     }
   }

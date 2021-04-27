@@ -15,12 +15,23 @@ const StyledHeading = styled(Heading)`
   margin-bottom: 60px;
 `;
 
+const LessonPlanEmpty = styled.div`
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 10px 20px;
+  width: 20%;
+`;
+
 const LessonPlanList = ({ dataPlanLesson }) => (
   <Wrapper>
-    <StyledHeading>{dataPlanLesson.Dzien}</StyledHeading>
-    {dataPlanLesson.Zajecia.map((item) => (
-      <LessonPlanItem dataLessonItem={item} />
-    ))}
+    {console.log(dataPlanLesson.Zajecia)}
+    <StyledHeading>{dataPlanLesson.Dzien.substr(0, 10)}</StyledHeading>
+    {dataPlanLesson.Zajecia ? (
+      dataPlanLesson.Zajecia.map((item) => <LessonPlanItem dataLessonItem={item} />)
+    ) : (
+      <LessonPlanEmpty />
+    )}
   </Wrapper>
 );
 

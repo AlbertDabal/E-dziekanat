@@ -15,7 +15,8 @@
         "import/prefer-default-export": "off",
         "import/no-unresolved": "off",
         "linebreak-style": 0,
-        "object-curly-newline": "off"
+        "object-curly-newline": "off",
+        "max-len": ["error", {"code": 120}]
     },
     "settings": {
         "import/resolver": {

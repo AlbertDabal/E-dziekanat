@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
 import * as AiIcons from 'react-icons/ai';
 import * as FaIcons from 'react-icons/fa';
+import { useSelector } from 'react-redux';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -58,6 +59,7 @@ const WrapperRight = styled.div`
 `;
 
 const TopBar = () => {
+  const isLogged = useSelector((state) => state);
   const location = useLocation().pathname;
   const pathName = NavigationMainData.filter((item, index) => item.path === location);
   return (
@@ -69,7 +71,7 @@ const TopBar = () => {
       </WrapperLeft>
       <WrapperRight>
         <AiIcons.AiFillMessage />
-        <Heading>Jan Kowalski</Heading>
+        <Heading>{isLogged.data.ImieNazwisko}</Heading>
         <FaIcons.FaUserCircle />
       </WrapperRight>
     </Wrapper>
