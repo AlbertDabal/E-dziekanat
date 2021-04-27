@@ -6,7 +6,9 @@ import Paragraph from 'components/atoms/Paragraph/Paragraph';
 import Button from 'components/atoms/Button/Button';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { loggedIn } from 'actions';
 
 const Wrapper = styled.div`
   display: flex;
@@ -26,7 +28,7 @@ const InputStyled = styled(Input)`
   margin-top: 40px;
 `;
 
-const LinkStyled = styled(Link)`
+const LinkStyled = styled(Paragraph)`
   margin-top: 20px;
   font-weight: 400;
   cursor: pointer;
@@ -53,6 +55,7 @@ const Line = styled.hr`
 `;
 
 const Login = ({ match }) => {
+  const dispatch = useDispatch();
   const [errorLogin, setErrorLogin] = useState(null);
 
   const history = useHistory();
@@ -80,7 +83,9 @@ const Login = ({ match }) => {
       setErrorLogin('*Nie poprawna nazwa użytkownika lub hasło');
       console.log('nie poprawne hasło');
     } else {
+      dispatch(loggedIn(res.data));
       console.log('poprawne');
+
       history.push('/dashboard');
     }
   }
@@ -97,8 +102,8 @@ const Login = ({ match }) => {
           </ButtonStyled>
           <Line />
 
-          <LinkStyled to="/lostpassword">Nie pamiętasz Hasła?</LinkStyled>
-          <LinkStyled to="/">Nie pamiętasz Nazwy Użytkownika?</LinkStyled>
+          <LinkStyled>Nie pamiętasz Hasła?</LinkStyled>
+          <LinkStyled>Nie pamiętasz Nazwy Użytkownika?</LinkStyled>
           {errorLogin && (
             <>
               <LinkStyled style={{ color: 'red' }}>{errorLogin}</LinkStyled>
