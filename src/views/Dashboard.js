@@ -25,8 +25,8 @@ const Dashboard = (props) => (
     <SideWrapper>
       <SideContainer>
         <ContainerDefault>
-          <LessonPlanList />
-          <LessonPlanList />
+          {/* <LessonPlanList />
+          <LessonPlanList /> */}
         </ContainerDefault>
       </SideContainer>
       <SideContainer style={{ flexDirection: 'column' }}>
