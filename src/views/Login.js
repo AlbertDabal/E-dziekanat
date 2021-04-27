@@ -6,7 +6,7 @@ import Paragraph from 'components/atoms/Paragraph/Paragraph';
 import Button from 'components/atoms/Button/Button';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 const Wrapper = styled.div`
   display: flex;
@@ -26,7 +26,7 @@ const InputStyled = styled(Input)`
   margin-top: 40px;
 `;
 
-const LinkStyled = styled(Paragraph)`
+const LinkStyled = styled(Link)`
   margin-top: 20px;
   font-weight: 400;
   cursor: pointer;
@@ -65,7 +65,7 @@ const Login = ({ match }) => {
     setErrorLogin(null);
     e.preventDefault();
     const res = await axios
-      .post('http://178.43.51.218/api/logowanie/zaloguj', {
+      .post('http://178.43.155.21/api/logowanie/zaloguj', {
         login: e.target[0].value,
         password: e.target[1].value,
         kod_roli: match.params.id,
@@ -97,8 +97,8 @@ const Login = ({ match }) => {
           </ButtonStyled>
           <Line />
 
-          <LinkStyled>Nie pamiętasz Hasła?</LinkStyled>
-          <LinkStyled>Nie pamiętasz Nazwy Użytkownika?</LinkStyled>
+          <LinkStyled to="/lostpassword">Nie pamiętasz Hasła?</LinkStyled>
+          <LinkStyled to="/">Nie pamiętasz Nazwy Użytkownika?</LinkStyled>
           {errorLogin && (
             <>
               <LinkStyled style={{ color: 'red' }}>{errorLogin}</LinkStyled>
