@@ -25,7 +25,6 @@ const LessonPlanEmpty = styled.div`
 
 const LessonPlanList = ({ dataPlanLesson }) => (
   <Wrapper>
-    {console.log(dataPlanLesson.Zajecia)}
     <StyledHeading>{dataPlanLesson.Dzien.substr(0, 10)}</StyledHeading>
     {dataPlanLesson.Zajecia ? (
       dataPlanLesson.Zajecia.map((item) => <LessonPlanItem dataLessonItem={item} />)

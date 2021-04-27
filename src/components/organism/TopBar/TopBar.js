@@ -71,7 +71,7 @@ const TopBar = () => {
       </WrapperLeft>
       <WrapperRight>
         <AiIcons.AiFillMessage />
-        <Heading>{isLogged.data.ImieNazwisko}</Heading>
+        <Heading>{isLogged ? isLogged.data.ImieNazwisko : null}</Heading>
         <FaIcons.FaUserCircle />
       </WrapperRight>
     </Wrapper>
