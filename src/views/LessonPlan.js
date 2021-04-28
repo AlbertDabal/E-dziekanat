@@ -1,27 +1,37 @@
 import LessonPlanList from 'components/organism/LessonPlan/LessonPlanList';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
 import DashboardTemplate from 'templates/DashboardTemplate';
-import { LessonPlan } from 'data/LessonPlan';
 import SelectPlan from 'components/molecules/SelectPlan/SelectPlan';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+`;
+
+const WrapperPlan = styled.div`
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+`;
 
 const LesssonPlan = () => {
   const [dataPlan, setDataPlan] = useState(null);
-  const [codePlan, setCodePlan] = useState(null);
-  const [idField, setIdField] = useState(null);
 
   useEffect(() => {
     FetchPlanCurrent();
   }, []);
 
-  async function FetchPlan() {
+  async function FetchPlan(kodPlanu, idPola) {
     const res = await axios
       .post('http://178.43.155.21/api/plan/zwroc_plan', {
         Id_uzytkownika: 2,
         Kod_roli: 'student',
-        KodPlanu: codePlan,
-        IdPola: idField,
+        KodPlanu: kodPlanu,
+        IdPola: idPola,
         DataOd: '2021-04-26',
         DataDO: '2021-04-30',
       })
@@ -29,7 +39,9 @@ const LesssonPlan = () => {
         console.log(error);
       });
 
-    setDataPlan(res.data);
+    if (res) {
+      setDataPlan(res.data);
+    }
   }
 
   async function FetchPlanCurrent() {
@@ -44,25 +56,17 @@ const LesssonPlan = () => {
     setDataPlan(res.data);
   }
 
-  const SelectTypePlan = (kodPlanu, idPola) => {
-    console.log(kodPlanu);
-    if (kodPlanu !== 'wykładowca') {
-      if (idPola) {
-        setCodePlan(kodPlanu);
-        setIdField(idPola);
-        FetchPlan();
-      }
-    }
-  };
-
   if (dataPlan !== null) {
-    // console.log(dataPlan.Tydzien[0]);
     return (
       <DashboardTemplate>
-        <SelectPlan TypePlan={SelectTypePlan} />
-        {dataPlan.Tydzien.map((item) => (
-          <LessonPlanList dataPlanLesson={item} />
-        ))}
+        <Wrapper>
+          <SelectPlan TypePlan={FetchPlan} />
+          <WrapperPlan>
+            {dataPlan.Tydzien.map((item) => (
+              <LessonPlanList dataPlanLesson={item} />
+            ))}
+          </WrapperPlan>
+        </Wrapper>
       </DashboardTemplate>
     );
   }

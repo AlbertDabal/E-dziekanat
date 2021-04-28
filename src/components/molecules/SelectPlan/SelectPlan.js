@@ -1,6 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import Heading from 'components/atoms/Heading/Heading';
+
+const Select = styled.select`
+  font-size: ${({ theme }) => theme.fontSize.s};
+  margin: 0px 10px;
+`;
+
+const Wrapper = styled.div`
+  margin-left: 10px;
+  display: flex;
+  margin-bottom: 25px;
+`;
 
 function SelectPlan({ TypePlan }) {
   const [dataSelect, setDataSelect] = useState(null);
@@ -12,9 +25,10 @@ function SelectPlan({ TypePlan }) {
       FetchSelectStudent();
     } else {
       FetchSelectTeacher();
+      console.log(`ROLE:${roleSelected}`);
+      console.log(`ITEM:${itemSelected}`);
+      TypePlan(roleSelected, itemSelected);
     }
-
-    TypePlan(roleSelected, itemSelected);
   }, [roleSelected]);
 
   async function FetchSelectStudent() {
@@ -26,9 +40,9 @@ function SelectPlan({ TypePlan }) {
       .catch((error) => {
         console.log(error);
       });
-
     setItemSelected(res.data.IdDomyslne);
     setDataSelect(res.data);
+    TypePlan(roleSelected, res.data.IdDomyslne);
   }
 
   async function FetchSelectTeacher() {
@@ -42,29 +56,36 @@ function SelectPlan({ TypePlan }) {
         console.log(error);
       });
 
+    setItemSelected(0);
+
     setDataSelect(res.data);
   }
 
-  const handleChange = (event) => {
+  function handleChange(event) {
     setItemSelected(event.target.value);
-  };
 
-  const handleChangeRole = (event) => {
+    TypePlan(roleSelected, event.target.value);
+  }
+
+  function handleChangeRole(event) {
     setRoleSelected(event.target.value);
-  };
+  }
   if (dataSelect !== null) {
     return (
-      <div>
-        <select value={roleSelected} onChange={handleChangeRole}>
+      <Wrapper>
+        <Heading>Rola:</Heading>
+        <Select value={roleSelected} onChange={handleChangeRole}>
           <option value="student">Student</option>
-          <option value="wykładowca">Wykładowca</option>
-        </select>
-        <select value={itemSelected} onChange={handleChange}>
+          <option value="wykladowca">Wykładowca</option>
+        </Select>
+        <Heading>{roleSelected === 'wykladowca' ? 'Wykładowca:' : 'Grupa:'}</Heading>
+        <Select value={itemSelected} onChange={handleChange} defaultValue={dataSelect.IdDomyslne}>
+          {roleSelected === 'wykladowca' ? <option value={0}>-------------</option> : null}
           {dataSelect.dane.map((item) => (
             <option value={item.value}>{item.visible}</option>
           ))}
-        </select>
-      </div>
+        </Select>
+      </Wrapper>
     );
   }
   return null;

@@ -5,7 +5,6 @@ import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
-import axios from 'axios';
 
 const Wrapper = styled.div`
   display: flex;
@@ -100,9 +99,7 @@ const ChangePassword = ({ props }) => {
             aktualizuj hasło
           </ButtonStyled>
           <Line />
-          <p>
-            {errorPassChange}
-          </p>
+          <p>{errorPassChange}</p>
         </Form>
       </Wrapper>
     </WellcomeTemplate>

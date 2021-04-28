@@ -15,8 +15,7 @@ import { useSelector } from 'react-redux';
 
 const Root = () => {
   const isLogged = useSelector((state) => state);
-  // SPRAWDZAMY CZY JEST KTOS ZALOGOWANY
-  console.log(isLogged);
+  // console.log(isLogged);
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
