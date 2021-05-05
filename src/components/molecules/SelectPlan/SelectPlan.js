@@ -6,7 +6,7 @@ import Heading from 'components/atoms/Heading/Heading';
 
 const Select = styled.select`
   font-size: ${({ theme }) => theme.fontSize.s};
-  margin: 0px 10px;
+  margin: 0px 30px 0 20px;
 `;
 
 const Wrapper = styled.div`
@@ -25,15 +25,13 @@ function SelectPlan({ TypePlan }) {
       FetchSelectStudent();
     } else {
       FetchSelectTeacher();
-      console.log(`ROLE:${roleSelected}`);
-      console.log(`ITEM:${itemSelected}`);
       TypePlan(roleSelected, itemSelected);
     }
   }, [roleSelected]);
 
   async function FetchSelectStudent() {
     const res = await axios
-      .post('http://178.43.155.21/api/plan/wypelnij_combobox_domyslnie', {
+      .post('http://178.43.0.151/api/plan/wypelnij_combobox_domyslnie', {
         Id_uzytkownika: 2,
         Kod_roli: 'student',
       })
@@ -47,7 +45,7 @@ function SelectPlan({ TypePlan }) {
 
   async function FetchSelectTeacher() {
     const res = await axios
-      .post('http://178.43.155.21/api/plan/wypelnij_combobox', {
+      .post('http://178.43.0.151/api/plan/wypelnij_combobox', {
         Id_uzytkownika: 2,
         Kod_roli: 'student',
         KodPlanu: 'wykladowca',
