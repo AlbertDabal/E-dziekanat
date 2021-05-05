@@ -1,20 +1,52 @@
 import LessonPlanList from 'components/organism/LessonPlan/LessonPlanList';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
 import DashboardTemplate from 'templates/DashboardTemplate';
-import { LessonPlan } from 'data/LessonPlan';
+import SelectPlan from 'components/molecules/SelectPlan/SelectPlan';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+`;
+
+const WrapperPlan = styled.div`
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+`;
 
 const LesssonPlan = () => {
   const [dataPlan, setDataPlan] = useState(null);
 
   useEffect(() => {
-    FetchPlan();
+    FetchPlanCurrent();
   }, []);
 
-  async function FetchPlan() {
+  async function FetchPlan(kodPlanu, idPola) {
     const res = await axios
-      .post('http://178.43.155.21/api/plan/aktualny_plan', {
+      .post('http://178.43.0.151/api/plan/zwroc_plan', {
+        Id_uzytkownika: 2,
+        Kod_roli: 'student',
+        KodPlanu: kodPlanu,
+        IdPola: idPola,
+        DataOd: '2021-04-26',
+        DataDO: '2021-04-30',
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    if (res) {
+      setDataPlan(res.data);
+    }
+  }
+
+  async function FetchPlanCurrent() {
+    const res = await axios
+      .post('http://178.43.0.151/api/plan/aktualny_plan', {
         Id_uzytkownika: 2,
         Kod_roli: 'student',
       })
@@ -23,13 +55,18 @@ const LesssonPlan = () => {
       });
     setDataPlan(res.data);
   }
+
   if (dataPlan !== null) {
-    console.log(dataPlan.Tydzien[0]);
     return (
       <DashboardTemplate>
-        {dataPlan.Tydzien.map((item) => (
-          <LessonPlanList dataPlanLesson={item} />
-        ))}
+        <Wrapper>
+          <SelectPlan TypePlan={FetchPlan} />
+          <WrapperPlan>
+            {dataPlan.Tydzien.map((item) => (
+              <LessonPlanList dataPlanLesson={item} />
+            ))}
+          </WrapperPlan>
+        </Wrapper>
       </DashboardTemplate>
     );
   }

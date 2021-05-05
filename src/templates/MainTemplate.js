@@ -2,15 +2,12 @@ import React from 'react';
 import GlobalStyle from 'theme/GlobalStyle';
 import styled, { ThemeProvider } from 'styled-components';
 import { theme } from 'theme/MainThame';
-import Heading from 'components/atoms/Heading/Heading';
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
 import Alert from 'components/atoms/Alert/Alert';
 import Button from 'components/atoms/Button/Button';
 import Input from 'components/atoms/Input/Input';
 import TextArea from 'components/atoms/Input/TextArea';
-
 import Sidebar from 'components/organism/Navigation/Sidebar';
-import LessonPlanItem from 'components/organism/LessonPlan/LessonPlanItem';
 import LessonPlanList from 'components/organism/LessonPlan/LessonPlanList';
 
 const Wrapper = styled.div`

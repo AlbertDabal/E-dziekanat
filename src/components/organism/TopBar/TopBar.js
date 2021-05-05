@@ -2,7 +2,6 @@ import Heading from 'components/atoms/Heading/Heading';
 import React from 'react';
 import styled from 'styled-components';
 import NavigationMainData from 'data/NavigationMainData';
-import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
 import * as AiIcons from 'react-icons/ai';
 import * as FaIcons from 'react-icons/fa';
@@ -71,7 +70,7 @@ const TopBar = () => {
       </WrapperLeft>
       <WrapperRight>
         <AiIcons.AiFillMessage />
-        <Heading>{isLogged.data.ImieNazwisko}</Heading>
+        <Heading>{isLogged ? isLogged.data.ImieNazwisko : null}</Heading>
         <FaIcons.FaUserCircle />
       </WrapperRight>
     </Wrapper>

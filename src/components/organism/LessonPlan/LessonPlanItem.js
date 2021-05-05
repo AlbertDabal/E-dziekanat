@@ -6,9 +6,11 @@ import PropTypes from 'prop-types';
 const Wrapper = styled.div`
   display: flex;
   align-items: flex-start;
+  justify-content:space-between;
   flex-direction: column;
   padding: 10px 20px;
   width: 100%;
+  height: 170px;
 
   ${({ typeLesson }) => typeLesson === 'Laboratoria'
   && css`
