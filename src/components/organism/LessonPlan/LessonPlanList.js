@@ -2,6 +2,7 @@ import Heading from 'components/atoms/Heading/Heading';
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { nanoid } from 'nanoid';
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
 import LessonPlanItem from './LessonPlanItem';
 
@@ -14,7 +15,7 @@ const Wrapper = styled.div`
   margin: 0px 5px;
 `;
 
-const StyledHeading = styled(Heading)`
+const StyledHeading = styled.div`
   margin-bottom: 30px;
   display: flex;
   flex-direction: column;
@@ -33,7 +34,7 @@ const LessonPlanList = ({ dataPlanLesson }) => (
       <Paragraph>{dataPlanLesson.DzienTygodnia}</Paragraph>
     </StyledHeading>
     {dataPlanLesson.Zajecia ? (
-      dataPlanLesson.Zajecia.map((item) => <LessonPlanItem dataLessonItem={item} />)
+      dataPlanLesson.Zajecia.map((item) => <LessonPlanItem dataLessonItem={item} key={nanoid()} />)
     ) : (
       <LessonPlanEmpty />
     )}
@@ -41,7 +42,11 @@ const LessonPlanList = ({ dataPlanLesson }) => (
 );
 
 LessonPlanList.propTypes = {
-  dataPlanLesson: PropTypes.arrayOf(PropTypes.object).isRequired,
+  dataPlanLesson: PropTypes.shape({
+    Dzien: PropTypes.string,
+    DzienTygodnia: PropTypes.string,
+    Zajecia: PropTypes.string,
+  }).isRequired,
 };
 
 export default LessonPlanList;

@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import WellcomeTemplate from 'templates/WellcomeTemplate';
 import styled from 'styled-components';
 import Input from 'components/atoms/Input/Input';
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
 import Button from 'components/atoms/Button/Button';
 import PropTypes from 'prop-types';
-import axios from 'axios';
-import { useHistory, Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { loggedIn } from 'actions';
+import { useHistory } from 'react-router-dom';
+import { SetLogin } from 'api/FetchLogin';
 
 const Wrapper = styled.div`
   display: flex;
@@ -55,36 +53,23 @@ const Line = styled.hr`
 `;
 
 const Login = ({ match }) => {
-  const dispatch = useDispatch();
   const [errorLogin, setErrorLogin] = useState(null);
-
   const history = useHistory();
-
-  useEffect(() => {
-    console.log(match.params.id);
-  }, []);
 
   async function Zaloguj(e) {
     setErrorLogin(null);
     e.preventDefault();
-    const res = await axios
-      .post('http://178.43.155.21/api/logowanie/zaloguj', {
-        login: e.target[0].value,
-        password: e.target[1].value,
-        kod_roli: match.params.id,
-      })
-      .catch((error) => {
-        console.log(error);
-      });
 
-    console.log(res.data);
+    const login = e.target[0].value;
+    const password = e.target[1].value;
+
+    const res = await SetLogin(login, password, match.params.id);
 
     if (res.data === null) {
       setErrorLogin('*Nie poprawna nazwa użytkownika lub hasło');
-      console.log('nie poprawne hasło');
+      // console.log('nie poprawne hasło');
     } else {
-      dispatch(loggedIn(res.data));
-      console.log('poprawne');
+      // console.log('poprawne');
 
       history.push('/dashboard');
     }
@@ -118,7 +103,11 @@ const Login = ({ match }) => {
 };
 
 Login.propTypes = {
-  match: PropTypes.arrayOf(PropTypes.object).isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.node,
+    }).isRequired,
+  }).isRequired,
 };
 
 export default Login;

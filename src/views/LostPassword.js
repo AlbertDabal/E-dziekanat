@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
-import axios from 'axios';
+import { SetLostPassword } from 'api/FetchLogin';
+import Paragraph from 'components/atoms/Paragraph/Paragraph';
 
 const Wrapper = styled.div`
   display: flex;
@@ -50,34 +50,22 @@ const LostPassword = ({ match }) => {
   const [enteredUser, setEnteredUser] = useState('');
   const [Message, setMessage] = useState(null);
 
-  const history = useHistory();
-
-  console.log('Entered User: ', enteredUser);
+  // console.log('Entered User: ', enteredUser);
 
   const UserCatcher = (event) => {
     setEnteredUser(event.target.value);
   };
 
-  const LostPasswordHandler = (event) => {
+  const LostPasswordHandler = async (event) => {
     event.preventDefault();
 
     const data = {
-      user: enteredUser,
+      login: enteredUser,
     };
 
-    axios.post('http://178.43.155.21/api/logowanie', data).then(
-      (res) => {
-        console.log('Res: ', res);
-        setMessage('Link wysłany');
-      },
-    ).catch(
-      (err) => {
-        console.log('Err: ', err);
-        setMessage('Błąd wysyłania');
-      },
-    );
+    const res = await SetLostPassword(data);
 
-    console.log('Leci po przycisku', data.user);
+    setMessage(res.data.Tresc);
   };
 
   return (
@@ -90,9 +78,7 @@ const LostPassword = ({ match }) => {
             odzyskaj
           </ButtonStyled>
           <Line />
-          <p>
-            {Message}
-          </p>
+          <Paragraph>{Message}</Paragraph>
         </Form>
       </Wrapper>
     </WellcomeTemplate>

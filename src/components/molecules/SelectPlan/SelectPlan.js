@@ -1,8 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Heading from 'components/atoms/Heading/Heading';
+import { SetSelect, SetSelectDefault } from 'api/FetchPlan';
+import { nanoid } from 'nanoid';
 
 const Select = styled.select`
   font-size: ${({ theme }) => theme.fontSize.s};
@@ -30,29 +32,15 @@ function SelectPlan({ TypePlan }) {
   }, [roleSelected]);
 
   async function FetchSelectStudent() {
-    const res = await axios
-      .post('http://178.43.0.151/api/plan/wypelnij_combobox_domyslnie', {
-        Id_uzytkownika: 2,
-        Kod_roli: 'student',
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    const res = await SetSelectDefault();
+
     setItemSelected(res.data.IdDomyslne);
     setDataSelect(res.data);
     TypePlan(roleSelected, res.data.IdDomyslne);
   }
 
   async function FetchSelectTeacher() {
-    const res = await axios
-      .post('http://178.43.0.151/api/plan/wypelnij_combobox', {
-        Id_uzytkownika: 2,
-        Kod_roli: 'student',
-        KodPlanu: 'wykladowca',
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    const res = await SetSelect();
 
     setItemSelected(0);
 
@@ -80,7 +68,9 @@ function SelectPlan({ TypePlan }) {
         <Select value={itemSelected} onChange={handleChange} defaultValue={dataSelect.IdDomyslne}>
           {roleSelected === 'wykladowca' ? <option value={0}>-------------</option> : null}
           {dataSelect.dane.map((item) => (
-            <option value={item.value}>{item.visible}</option>
+            <option value={item.value} key={nanoid()}>
+              {item.visible}
+            </option>
           ))}
         </Select>
       </Wrapper>

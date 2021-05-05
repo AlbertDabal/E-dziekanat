@@ -13,11 +13,10 @@ const DefaultBox = styled.div`
   padding: 15px;
 `;
 
-const ContainerDefault = ({ style, children }) => <DefaultBox style={style}>{children}</DefaultBox>;
+const ContainerDefault = ({ children }) => <DefaultBox>{children}</DefaultBox>;
 
 ContainerDefault.propTypes = {
-  style: PropTypes.arrayOf(PropTypes.object).isRequired,
-  children: PropTypes.arrayOf(PropTypes.object).isRequired,
+  children: PropTypes.element.isRequired,
 };
 
 export default ContainerDefault;
