@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import DashboardTemplate from 'templates/DashboardTemplate';
 import Heading from 'components/atoms/Heading/Heading';
 import ContainerDefault from 'components/organism/DashboardElements/ContainerDefault';
-import LessonPlanList from 'components/organism/LessonPlan/LessonPlanList';
 
 const SideWrapper = styled.div`
   display: flex;
@@ -25,8 +24,7 @@ const Dashboard = (props) => (
     <SideWrapper>
       <SideContainer>
         <ContainerDefault>
-          {/* <LessonPlanList />
-          <LessonPlanList /> */}
+          <Heading>TEST</Heading>
         </ContainerDefault>
       </SideContainer>
       <SideContainer style={{ flexDirection: 'column' }}>
