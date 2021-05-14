@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
-import logo from 'images/backgroud.jpg';
+// import logo from 'images/backgroud.jpg';
 import { Link } from 'react-router-dom';
 
 const Wrapper = styled.div`
@@ -69,7 +69,7 @@ const LogoImage = styled.img`
   border-radius: 18px 18px 0px 0px;
 `;
 
-const NewsItem = ({ data, tytul, tekst }) => (
+const NewsItem = ({ data, tytul, tekst, logo }) => (
   <Wrapper onClick={() => console.log('Clicked')}>
     <Image>
       <LogoImage src={logo} />
@@ -88,6 +88,7 @@ NewsItem.propTypes = {
   data: PropTypes.string.isRequired,
   tytul: PropTypes.string.isRequired,
   tekst: PropTypes.string.isRequired,
+  logo: PropTypes.string.isRequired,
 };
 
 export default NewsItem;

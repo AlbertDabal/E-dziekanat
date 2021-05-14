@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import DashboardTemplate from 'templates/DashboardTemplate';
-
-import NewsData from 'data/NewsData';
+import { SetNews } from 'api/FetchNews';
 import NewsItem from 'components/organism/News/NewsItem';
+import DashboardTemplate from 'templates/DashboardTemplate';
 
 const Wrapper = styled.div`
   display: grid;
@@ -19,16 +18,32 @@ const ButtonNews = styled(Link)`
   color: black;
 `;
 
-const News = () => (
-  <DashboardTemplate>
-    <Wrapper>
-      {NewsData.map((news, index) => (
-        <ButtonNews to={`/news/${index}`}>
-          <NewsItem data={news.data} tytul={news.tytul} tekst={news.tekst} />
-        </ButtonNews>
-      ))}
-    </Wrapper>
-  </DashboardTemplate>
-);
+const News = () => {
+  const [dataNews, setDataNews] = useState(null);
+
+  useEffect(() => {
+    FetchNews();
+  }, []);
+
+  async function FetchNews() {
+    const res = await SetNews();
+    console.log(res.data.TopListAktualnosciPowiadomien);
+    setDataNews(res.data.TopListAktualnosciPowiadomien);
+  }
+  if (dataNews !== null) {
+    return (
+      <DashboardTemplate>
+        <Wrapper>
+          {dataNews.map((news, index) => (
+            <ButtonNews to={`/news/${index}`}>
+              <NewsItem data={news.Data_wystawienia} tytul={news.Tytul} tekst={news.Tresc} logo={news.Zdjecie} />
+            </ButtonNews>
+          ))}
+        </Wrapper>
+      </DashboardTemplate>
+    );
+  }
+  return null;
+};
 
 export default News;
