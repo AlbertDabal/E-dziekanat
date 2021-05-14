@@ -10,6 +10,8 @@ import TextArea from 'components/atoms/Input/TextArea';
 import Sidebar from 'components/organism/Navigation/Sidebar';
 import LessonPlanList from 'components/organism/LessonPlan/LessonPlanList';
 
+import NewsItem from 'components/organism/News/NewsItem';
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;

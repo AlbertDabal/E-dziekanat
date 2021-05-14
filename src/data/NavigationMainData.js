@@ -44,7 +44,7 @@ const NavigationMainData = [
   },
   {
     title: 'Aktualności',
-    path: routes.lessonPlan,
+    path: routes.news,
     icon: <AiIcons.AiFillThunderbolt />,
     cName: 'nav-text,',
     id: nanoid(),
