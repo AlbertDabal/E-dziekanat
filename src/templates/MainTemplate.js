@@ -13,6 +13,8 @@ import Sidebar from 'components/organism/Navigation/Sidebar';
 import LessonPlanItem from 'components/organism/LessonPlan/LessonPlanItem';
 import LessonPlanList from 'components/organism/LessonPlan/LessonPlanList';
 
+import NewsItem from 'components/organism/News/NewsItem';
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;

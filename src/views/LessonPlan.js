@@ -14,7 +14,7 @@ const LesssonPlan = () => {
 
   async function FetchPlan() {
     const res = await axios
-      .post('http://178.43.155.21/api/plan/aktualny_plan', {
+      .post('http://178.43.0.151/api/plan/aktualny_plan', {
         Id_uzytkownika: 2,
         Kod_roli: 'student',
       })
