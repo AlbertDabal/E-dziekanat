@@ -13,7 +13,6 @@ import News from 'views/News';
 import NewsBig from 'views/NewsBig';
 import Wellcome from 'views/Wellcome';
 import { routes } from 'routes';
-import { useSelector } from 'react-redux';
 
 const Root = () => {
   const isLogged = useSelector((state) => state);

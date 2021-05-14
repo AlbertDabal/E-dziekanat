@@ -6,9 +6,11 @@ import PropTypes from 'prop-types';
 const Wrapper = styled.div`
   display: flex;
   align-items: flex-start;
+  justify-content:space-between;
   flex-direction: column;
   padding: 10px 20px;
   width: 100%;
+  height: 170px;
 
   ${({ typeLesson }) => typeLesson === 'Laboratoria'
   && css`
@@ -97,7 +99,21 @@ const LessonPlanItem = ({ dataLessonItem }) => (
 );
 
 LessonPlanItem.propTypes = {
-  dataLessonItem: PropTypes.arrayOf(PropTypes.object).isRequired,
+  dataLessonItem: PropTypes.shape({
+    DodatkoweMaterialy: PropTypes.string,
+    Ects: PropTypes.number,
+    GodzRozp: PropTypes.string,
+    GodzZakon: PropTypes.string,
+    IloscGodzin: PropTypes.number,
+    ImieWykladowcy: PropTypes.string,
+    LinkDoKursu: PropTypes.string,
+    Nazwa: PropTypes.string,
+    NazwaGrupy: PropTypes.string,
+    NazwiskoWykladowcy: PropTypes.string,
+    NumerSemestru: PropTypes.number,
+    Opis: PropTypes.string,
+    Typ: PropTypes.string,
+  }).isRequired,
 };
 
 export default LessonPlanItem;

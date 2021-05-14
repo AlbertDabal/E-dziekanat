@@ -39,7 +39,7 @@ const DashboardTemplate = ({ children }) => (
 );
 
 DashboardTemplate.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.object).isRequired,
+  children: PropTypes.element.isRequired,
 };
 
 export default DashboardTemplate;

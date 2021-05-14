@@ -1,39 +1,66 @@
 import LessonPlanList from 'components/organism/LessonPlan/LessonPlanList';
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-
 import DashboardTemplate from 'templates/DashboardTemplate';
-import { LessonPlan } from 'data/LessonPlan';
+import SelectPlan from 'components/molecules/SelectPlan/SelectPlan';
+import styled from 'styled-components';
+import { SetActualyPlan, SetPlan } from 'api/FetchPlan';
+import Heading from 'components/atoms/Heading/Heading';
+import { nanoid } from 'nanoid';
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+`;
+
+const WrapperPlan = styled.div`
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+`;
 
 const LesssonPlan = () => {
   const [dataPlan, setDataPlan] = useState(null);
 
   useEffect(() => {
-    FetchPlan();
+    FetchPlanCurrent();
   }, []);
 
-  async function FetchPlan() {
-    const res = await axios
-      .post('http://178.43.0.151/api/plan/aktualny_plan', {
-        Id_uzytkownika: 2,
-        Kod_roli: 'student',
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  async function FetchPlan(kodPlanu, idPola) {
+    const res = await SetPlan(kodPlanu, idPola);
+
+    if (res) {
+      setDataPlan(res.data);
+    }
+  }
+
+  async function FetchPlanCurrent() {
+    const res = await SetActualyPlan();
     setDataPlan(res.data);
   }
+
   if (dataPlan !== null) {
-    console.log(dataPlan.Tydzien[0]);
     return (
       <DashboardTemplate>
-        {dataPlan.Tydzien.map((item) => (
-          <LessonPlanList dataPlanLesson={item} />
-        ))}
+        <Wrapper>
+          <SelectPlan TypePlan={FetchPlan} />
+          <WrapperPlan>
+            {dataPlan.Tydzien.map((item, index) => (
+              <LessonPlanList dataPlanLesson={item} key={nanoid()} />
+            ))}
+          </WrapperPlan>
+        </Wrapper>
       </DashboardTemplate>
     );
   }
-  return null;
+  return (
+    <DashboardTemplate>
+      <Wrapper>
+        <Heading>Ładowanie planu...</Heading>
+      </Wrapper>
+    </DashboardTemplate>
+  );
 };
 
 export default LesssonPlan;

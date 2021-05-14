@@ -4,8 +4,6 @@ import styled from 'styled-components';
 import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
-import axios from 'axios';
 
 const Wrapper = styled.div`
   display: flex;
@@ -50,8 +48,6 @@ const ChangePassword = ({ props }) => {
   const [errorPassChange, setErrorPassChange] = useState(null);
   const [enteredPassword, setEnteredPassword] = useState('');
   const [enteredPasswordConfirm, setEnteredPasswordConfirm] = useState('');
-
-  const history = useHistory();
 
   const PasswordCatcher = (event) => {
     setEnteredPassword(event.target.value);
@@ -100,9 +96,7 @@ const ChangePassword = ({ props }) => {
             aktualizuj hasło
           </ButtonStyled>
           <Line />
-          <p>
-            {errorPassChange}
-          </p>
+          <p>{errorPassChange}</p>
         </Form>
       </Wrapper>
     </WellcomeTemplate>

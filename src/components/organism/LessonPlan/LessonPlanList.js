@@ -2,6 +2,8 @@ import Heading from 'components/atoms/Heading/Heading';
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { nanoid } from 'nanoid';
+import Paragraph from 'components/atoms/Paragraph/Paragraph';
 import LessonPlanItem from './LessonPlanItem';
 
 const Wrapper = styled.div`
@@ -9,26 +11,30 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 20%;
+  margin: 0px 5px;
 `;
 
-const StyledHeading = styled(Heading)`
-  margin-bottom: 60px;
+const StyledHeading = styled.div`
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const LessonPlanEmpty = styled.div`
   display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  padding: 10px 20px;
   width: 20%;
 `;
 
 const LessonPlanList = ({ dataPlanLesson }) => (
   <Wrapper>
-    {console.log(dataPlanLesson.Zajecia)}
-    <StyledHeading>{dataPlanLesson.Dzien.substr(0, 10)}</StyledHeading>
+    <StyledHeading>
+      <Heading>{dataPlanLesson.Dzien.substr(0, 10)}</Heading>
+      <Paragraph>{dataPlanLesson.DzienTygodnia}</Paragraph>
+    </StyledHeading>
     {dataPlanLesson.Zajecia ? (
-      dataPlanLesson.Zajecia.map((item) => <LessonPlanItem dataLessonItem={item} />)
+      dataPlanLesson.Zajecia.map((item) => <LessonPlanItem dataLessonItem={item} key={nanoid()} />)
     ) : (
       <LessonPlanEmpty />
     )}
@@ -36,7 +42,11 @@ const LessonPlanList = ({ dataPlanLesson }) => (
 );
 
 LessonPlanList.propTypes = {
-  dataPlanLesson: PropTypes.arrayOf(PropTypes.object).isRequired,
+  dataPlanLesson: PropTypes.shape({
+    Dzien: PropTypes.string,
+    DzienTygodnia: PropTypes.string,
+    Zajecia: PropTypes.string,
+  }).isRequired,
 };
 
 export default LessonPlanList;
