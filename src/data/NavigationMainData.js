@@ -51,7 +51,7 @@ const NavigationMainData = [
   },
   {
     title: 'Dokumenty',
-    path: routes.lessonPlan,
+    path: routes.documents,
     icon: <AiIcons.AiFillFile />,
     cName: 'nav-text,',
     id: nanoid(),

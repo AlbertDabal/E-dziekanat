@@ -7,7 +7,7 @@ import DashboardTemplate from 'templates/DashboardTemplate';
 
 const Wrapper = styled.div`
   display: grid;
-  height: 100%;
+  height: 85vh;
   width: 100%;
   grid-template-columns: 50% 50%;
   text-decoration: none;
@@ -37,7 +37,7 @@ const News = () => {
         <Wrapper>
           {dataNews.map((news, index) => (
             <ButtonNews to={`/news/${index}`}>
-              <NewsItem data={news.Data_wystawienia} tytul={news.Tytul} tekst={news.Tresc} logo={news.Zdjecie} />
+              <NewsItem data={news.Data_wystawienia} tytul={news.Tytul} tekst={news.Tresc} /* logo={news.Zdjecie} */ />
             </ButtonNews>
           ))}
         </Wrapper>

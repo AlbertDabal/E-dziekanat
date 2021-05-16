@@ -7,5 +7,6 @@ export const routes = {
   lessonPlan: '/plan',
   news: '/news',
   newsbig: '/news/:id',
+  documents: '/documents',
   test: '/test',
 };
