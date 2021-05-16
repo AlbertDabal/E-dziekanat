@@ -62,8 +62,11 @@ const TopBar = ({ news }) => {
   const isLogged = useSelector((state) => state);
   const location = useLocation().pathname;
   const pathName = NavigationMainData.filter((item, index) => item.path === location);
+
+  const test = sessionStorage.getItem('ImieNazwisko');
   return (
     <Wrapper>
+      {console.log(test)}
       <WrapperLeft>
         <SvgContainer>{news ? NavigationMainData[5].icon : pathName[0].icon}</SvgContainer>
 
@@ -71,7 +74,7 @@ const TopBar = ({ news }) => {
       </WrapperLeft>
       <WrapperRight>
         <AiIcons.AiFillMessage />
-        <Heading>{isLogged ? isLogged.data.ImieNazwisko : null}</Heading>
+        <Heading>{sessionStorage.getItem('ImieNazwisko')}</Heading>
         <FaIcons.FaUserCircle />
       </WrapperRight>
     </Wrapper>

@@ -1,10 +1,12 @@
 import axios from 'axios';
 
 export const SetSelectDefault = async () => {
+  const idUzytkownika = sessionStorage.getItem('Id_uzytkownika');
+  const kodRoli = sessionStorage.getItem('Kod_roli');
   const res = await axios
     .post(`${process.env.REACT_APP_ADDRESS}plan/wypelnij_combobox_domyslnie`, {
-      Id_uzytkownika: 2,
-      Kod_roli: 'student',
+      Id_uzytkownika: idUzytkownika,
+      Kod_roli: kodRoli,
     })
     .catch((error) => {
       console.log(error);
@@ -14,10 +16,12 @@ export const SetSelectDefault = async () => {
 };
 
 export const SetSelect = async () => {
+  const idUzytkownika = sessionStorage.getItem('Id_uzytkownika');
+  const kodRoli = sessionStorage.getItem('Kod_roli');
   const res = await axios
     .post(`${process.env.REACT_APP_ADDRESS}plan/wypelnij_combobox`, {
-      Id_uzytkownika: 2,
-      Kod_roli: 'student',
+      Id_uzytkownika: idUzytkownika,
+      Kod_roli: kodRoli,
       KodPlanu: 'wykladowca',
     })
     .catch((error) => {
@@ -28,10 +32,12 @@ export const SetSelect = async () => {
 };
 
 export const SetPlan = async (kodPlanu, idPola, date) => {
+  const idUzytkownika = sessionStorage.getItem('Id_uzytkownika');
+  const kodRoli = sessionStorage.getItem('Kod_roli');
   const res = await axios
     .post(`${process.env.REACT_APP_ADDRESS}plan/zwroc_plan`, {
-      Id_uzytkownika: 2,
-      Kod_roli: 'student',
+      Id_uzytkownika: idUzytkownika,
+      Kod_roli: kodRoli,
       KodPlanu: kodPlanu,
       IdPola: idPola,
       DataOd: date.DataOd,
@@ -45,10 +51,12 @@ export const SetPlan = async (kodPlanu, idPola, date) => {
 };
 
 export const SetActualyPlan = async () => {
+  const idUzytkownika = sessionStorage.getItem('Id_uzytkownika');
+  const kodRoli = sessionStorage.getItem('Kod_roli');
   const res = await axios
     .post(`${process.env.REACT_APP_ADDRESS}plan/aktualny_plan`, {
-      Id_uzytkownika: 2,
-      Kod_roli: 'student',
+      Id_uzytkownika: idUzytkownika,
+      Kod_roli: kodRoli,
     })
     .catch((error) => {
       console.log(error);

@@ -64,73 +64,73 @@ const Documents = () => (
           <TD>Dokument_1.txt</TD>
           <TD>
             <DATA>2021-05-15</DATA>
+            <DATA>16:31</DATA>
+          </TD>
+          <TD>
+            <DATA>2021-05-11</DATA>
+            <DATA>18:29</DATA>
+          </TD>
+          <TD>Diego Lewandowski</TD>
+        </TR>
+        <TR>
+          <TD>Dokument_2.txt</TD>
+          <TD>
+            <DATA>2021-05-14</DATA>
             <DATA>18:19</DATA>
           </TD>
           <TD>
-            <DATA>2021-05-16</DATA>
+            <DATA>2021-05-10</DATA>
             <DATA>18:29</DATA>
           </TD>
-          <TD>Bartek Mróz</TD>
+          <TD>Artur Wiśniewski</TD>
         </TR>
         <TR>
-          <TD>Dokument_1.txt</TD>
+          <TD>Advantages and disadvantages of studying IT.txt</TD>
+          <TD>
+            <DATA>2021-05-13</DATA>
+            <DATA>09:59</DATA>
+          </TD>
+          <TD>
+            <DATA>2021-05-09</DATA>
+            <DATA>11:11</DATA>
+          </TD>
+          <TD>Miłosz Jankowski</TD>
+        </TR>
+        <TR>
+          <TD>Zadanie zaliczeniowe PO_2DI.doc</TD>
+          <TD>
+            <DATA>2021-05-15</DATA>
+            <DATA>12:32</DATA>
+          </TD>
+          <TD>
+            <DATA>2020-09-16</DATA>
+            <DATA>11:55</DATA>
+          </TD>
+          <TD>Marlena Ziółkowska</TD>
+        </TR>
+        <TR>
+          <TD>Wazne informacje 2DI.doc</TD>
+          <TD>
+            <DATA>2021-05-15</DATA>
+            <DATA>12:45</DATA>
+          </TD>
+          <TD>
+            <DATA>2020-09-23</DATA>
+            <DATA>18:29</DATA>
+          </TD>
+          <TD>Agnieszka Urbańska</TD>
+        </TR>
+        <TR>
+          <TD>Karta zgłoszenia tematu inż. studia Stacjonarne.docx</TD>
           <TD>
             <DATA>2021-05-15</DATA>
             <DATA>18:19</DATA>
           </TD>
           <TD>
-            <DATA>2021-05-16</DATA>
-            <DATA>18:29</DATA>
+            <DATA>2020-08-23</DATA>
+            <DATA>21:23</DATA>
           </TD>
-          <TD>Bartek Mróz</TD>
-        </TR>
-        <TR>
-          <TD>Dokument_1.txt</TD>
-          <TD>
-            <DATA>2021-05-15</DATA>
-            <DATA>18:19</DATA>
-          </TD>
-          <TD>
-            <DATA>2021-05-16</DATA>
-            <DATA>18:29</DATA>
-          </TD>
-          <TD>Bartek Mróz</TD>
-        </TR>
-        <TR>
-          <TD>Dokument_1.txt</TD>
-          <TD>
-            <DATA>2021-05-15</DATA>
-            <DATA>18:19</DATA>
-          </TD>
-          <TD>
-            <DATA>2021-05-16</DATA>
-            <DATA>18:29</DATA>
-          </TD>
-          <TD>Bartek Mróz</TD>
-        </TR>
-        <TR>
-          <TD>Dokument_1.txt</TD>
-          <TD>
-            <DATA>2021-05-15</DATA>
-            <DATA>18:19</DATA>
-          </TD>
-          <TD>
-            <DATA>2021-05-16</DATA>
-            <DATA>18:29</DATA>
-          </TD>
-          <TD>Bartek Mróz</TD>
-        </TR>
-        <TR>
-          <TD>Dokument_1.txt</TD>
-          <TD>
-            <DATA>2021-05-15</DATA>
-            <DATA>18:19</DATA>
-          </TD>
-          <TD>
-            <DATA>2021-05-16</DATA>
-            <DATA>18:29</DATA>
-          </TD>
-          <TD>Bartek Mróz</TD>
+          <TD>Adam Ostrowski</TD>
         </TR>
       </Table>
     </Wrapper>
