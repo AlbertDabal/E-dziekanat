@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 20%;
+  width: ${({ dashboard }) => (dashboard === 'dashboard' ? '50%' : '20%')};
   margin: 0px 5px;
 `;
 
@@ -27,8 +27,8 @@ const LessonPlanEmpty = styled.div`
   width: 20%;
 `;
 
-const LessonPlanList = ({ dataPlanLesson }) => (
-  <Wrapper>
+const LessonPlanList = ({ dataPlanLesson, dashboard }) => (
+  <Wrapper dashboard={dashboard}>
     <StyledHeading>
       <Heading>{dataPlanLesson.Dzien.substr(0, 10)}</Heading>
       <Paragraph>{dataPlanLesson.DzienTygodnia}</Paragraph>
@@ -47,6 +47,11 @@ LessonPlanList.propTypes = {
     DzienTygodnia: PropTypes.string,
     Zajecia: PropTypes.string,
   }).isRequired,
+  dashboard: PropTypes.string,
+};
+
+LessonPlanList.defaultProps = {
+  dashboard: 'lesson',
 };
 
 export default LessonPlanList;
