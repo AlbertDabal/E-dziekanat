@@ -33,10 +33,13 @@ function SelectPlan({ TypePlan }) {
 
   async function FetchSelectStudent() {
     const res = await SetSelectDefault();
-
-    setItemSelected(res.data.IdDomyslne);
-    setDataSelect(res.data);
-    TypePlan(roleSelected, res.data.IdDomyslne);
+    try {
+      setItemSelected(res.data.IdDomyslne);
+      setDataSelect(res.data);
+      TypePlan(roleSelected, res.data.IdDomyslne);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   async function FetchSelectTeacher() {
