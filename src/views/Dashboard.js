@@ -63,9 +63,9 @@ const Dashboard = (props) => {
     const res = await SetDashboardData();
     setDashbordData(res.data);
   }
-  if (dashboardData !== null) {
-    return (
-      <DashboardTemplate>
+  return (
+    <DashboardTemplate>
+      {dashboardData !== null ? (
         <SideWrapper>
           <SideContainer>
             <ContainerDefault>
@@ -90,10 +90,9 @@ const Dashboard = (props) => {
             </ContainerDefault>
           </SideContainer>
         </SideWrapper>
-      </DashboardTemplate>
-    );
-  }
-  return null;
+      ) : null}
+    </DashboardTemplate>
+  );
 };
 
 export default Dashboard;
