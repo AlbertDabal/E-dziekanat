@@ -29,9 +29,11 @@ const LesssonPlan = () => {
   }, []);
 
   async function FetchPlan(kodPlanu, idPola) {
-    if (date) {
+    try {
       const res = await SetPlan(kodPlanu, idPola, date);
       setDataPlan(res.data);
+    } catch (err) {
+      console.log(err);
     }
   }
 
