@@ -78,7 +78,7 @@ const NewsBig = ({ match }) => (
       </Description>
       <About>
         <AboutLeft>24 KWI 2027 00:00</AboutLeft>
-        <AboutRight>od Bartek MrÃ³z</AboutRight>
+        <AboutRight>od Bartek Mróz</AboutRight>
       </About>
     </Wrapper>
   </NewsTemplate>
