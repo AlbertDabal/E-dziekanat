@@ -12,6 +12,8 @@ const Wrapper = styled.div`
   width: 100%;
   height: 170px;
 
+  
+
   ${({ typeLesson }) => typeLesson === 'Laboratoria'
   && css`
       background-color: ${({ theme }) => theme.lessonColorLab};
@@ -42,6 +44,13 @@ const Title = styled.div`
   width: 100%;
   margin-bottom: 20px;
 `;
+// prettier-ignore
+const ParagraphSmall = styled(Paragraph)`
+  ${sessionStorage.getItem('Kod_roli') === 'wykladowca'
+  && css`
+    font-size: 12px;
+  `}
+`;
 
 const Bottom = styled.div`
   display: flex;
@@ -58,6 +67,12 @@ const Link = styled.a`
   font-size: 16px;
   color: white;
   padding: 2px 10px;
+
+  ${sessionStorage.getItem('Kod_roli') === 'wykladowca'
+  && css`
+    font-size: 12px;
+     padding: 2px 10px;
+  `}
 
   ${({ typeLesson }) => typeLesson === 'Laboratoria'
   && css`
@@ -76,23 +91,29 @@ const Link = styled.a`
       background-color: ${({ theme }) => theme.buttonLessonColorSem};
     `}
 `;
-
+// prettier-ignore
 const LessonType = styled(Paragraph)`
   font-weight: 700;
   color: white;
   text-transform: uppercase;
-`;
 
+  ${sessionStorage.getItem('Kod_roli') === 'wykladowca'
+  && css`
+    font-size: 12px;
+  `}
+`;
+// prettier-ignore
 const LessonPlanItem = ({ dataLessonItem }) => (
   <Wrapper typeLesson={dataLessonItem.Typ}>
     <Title>
       <LessonType>{dataLessonItem.Typ}</LessonType>
-
-      <Paragraph>{`${dataLessonItem.GodzRozp.substr(11, 5)}-${dataLessonItem.GodzZakon.substr(11, 5)}`}</Paragraph>
+      {/* eslint-disable-next-line max-len */}
+      <ParagraphSmall>{`${dataLessonItem.GodzRozp.substr(11, 5)}-${dataLessonItem.GodzZakon.substr(11, 5)}`}</ParagraphSmall>
     </Title>
-    <Paragraph>{dataLessonItem.Nazwa}</Paragraph>
+    <ParagraphSmall>{dataLessonItem.Nazwa}</ParagraphSmall>
     <Bottom>
-      <Paragraph>{`${dataLessonItem.ImieWykladowcy.substr(0, 1)} ${dataLessonItem.NazwiskoWykladowcy}`}</Paragraph>
+      {/* eslint-disable-next-line max-len */}
+      <ParagraphSmall>{`${dataLessonItem.ImieWykladowcy.substr(0, 1)} ${dataLessonItem.NazwiskoWykladowcy}`}</ParagraphSmall>
       <Link typeLesson={dataLessonItem.Typ}>przejdz</Link>
     </Bottom>
   </Wrapper>

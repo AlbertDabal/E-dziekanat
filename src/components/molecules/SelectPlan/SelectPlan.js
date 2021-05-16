@@ -20,10 +20,11 @@ const Wrapper = styled.div`
 function SelectPlan({ TypePlan }) {
   const [dataSelect, setDataSelect] = useState(null);
   const [itemSelected, setItemSelected] = useState(null);
-  const [roleSelected, setRoleSelected] = useState('student');
+  const [roleSelected, setRoleSelected] = useState(sessionStorage.getItem('Kod_roli'));
 
   useEffect(() => {
-    if (roleSelected === 'student') {
+    const kodRoli = sessionStorage.getItem('Kod_roli');
+    if (kodRoli === 'student') {
       FetchSelectStudent();
     } else {
       FetchSelectTeacher();
@@ -43,9 +44,9 @@ function SelectPlan({ TypePlan }) {
   }
 
   async function FetchSelectTeacher() {
-    const res = await SetSelect();
+    const res = await SetSelectDefault();
     try {
-      setItemSelected(0);
+      setItemSelected(res.data.IdDomyslne);
 
       setDataSelect(res.data);
     } catch (err) {

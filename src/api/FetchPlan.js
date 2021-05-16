@@ -11,6 +11,7 @@ export const SetSelectDefault = async () => {
     .catch((error) => {
       console.log(error);
     });
+  console.log(res);
 
   return res;
 };
