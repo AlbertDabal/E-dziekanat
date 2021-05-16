@@ -11,6 +11,7 @@ import Dashboard from 'views/Dashboard';
 import LessonPlan from 'views/LessonPlan';
 import News from 'views/News';
 import NewsBig from 'views/NewsBig';
+import Documents from 'views/Documents';
 import Wellcome from 'views/Wellcome';
 import { routes } from 'routes';
 
@@ -27,6 +28,7 @@ const Root = () => (
         <Route exact path={routes.lessonPlan} component={LessonPlan} />
         <Route exact path={routes.news} component={News} />
         <Route exact path={routes.newsbig} component={NewsBig} />
+        <Route exact path={routes.documents} component={Documents} />
         <Route exact path={routes.test} component={MainTemplate} />
       </Switch>
     </Router>
