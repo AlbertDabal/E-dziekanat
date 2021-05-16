@@ -44,10 +44,13 @@ function SelectPlan({ TypePlan }) {
 
   async function FetchSelectTeacher() {
     const res = await SetSelect();
+    try {
+      setItemSelected(0);
 
-    setItemSelected(0);
-
-    setDataSelect(res.data);
+      setDataSelect(res.data);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   function handleChange(event) {
