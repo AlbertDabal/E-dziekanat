@@ -31,9 +31,9 @@ const News = () => {
     setDataNews(res.data.TopListAktualnosciPowiadomien);
   }
 
-  if (dataNews !== null) {
-    return (
-      <DashboardTemplate>
+  return (
+    <DashboardTemplate>
+      {dataNews !== null ? (
         <Wrapper>
           {dataNews.map((news, index) => (
             <ButtonNews to={`/news/${index}`}>
@@ -41,10 +41,9 @@ const News = () => {
             </ButtonNews>
           ))}
         </Wrapper>
-      </DashboardTemplate>
-    );
-  }
-  return null;
+      ) : null}
+    </DashboardTemplate>
+  );
 };
 
 export default News;

@@ -27,15 +27,15 @@ export const SetSelect = async () => {
   return res;
 };
 
-export const SetPlan = async (kodPlanu, idPola) => {
+export const SetPlan = async (kodPlanu, idPola, date) => {
   const res = await axios
     .post(`${process.env.REACT_APP_ADDRESS}plan/zwroc_plan`, {
       Id_uzytkownika: 2,
       Kod_roli: 'student',
       KodPlanu: kodPlanu,
       IdPola: idPola,
-      DataOd: '2021-04-26',
-      DataDO: '2021-04-27',
+      DataOd: date.DataOd,
+      DataDO: date.DataDo,
     })
     .catch((error) => {
       console.log(error);
