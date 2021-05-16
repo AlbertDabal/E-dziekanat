@@ -32,31 +32,34 @@ const LogoImage = styled.img`
 const Title = styled.div`
   display: flex;
   margin: 10px;
-  font-size: 32px;
-  line-height: 36px;
+  font-size: 38px;
+  line-height: 38px;
+  margin-top: 25px;
 `;
 
 const Description = styled.div`
   display: flex;
   height: 50%;
-  font-size: 14px;
-  line-height: 18px;
-  margin: 10px;
+  font-size: 22px;
+  line-height: 22px;
+  margin: 55px;
 `;
 
 const About = styled.div`
   display: flex;
-  margin: 10px;
+  margin: 20px;
   width: 100%;
   justify-content: space-between;
+  font-size: 16px;
+  line-height: 16px;
 `;
 const AboutLeft = styled.div`
   display: flex;
-  margin-left: 10px;
+  margin-left: 50px;
 `;
 const AboutRight = styled.div`
   display: flex;
-  margin-right: 10px;
+  margin-right: 50px;
 `;
 
 const NewsBig = ({ match }) => (
@@ -65,11 +68,17 @@ const NewsBig = ({ match }) => (
       <Image>
         <LogoImage src={logo} />
       </Image>
-      <Title>Tytuł newsa</Title>
-      <Description>Opis</Description>
+      <Title>tytul_6</Title>
+      <Description>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry
+        standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
+        a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
+        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
+        Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions
+      </Description>
       <About>
-        <AboutLeft>{match.params.id}</AboutLeft>
-        <AboutRight>Autor</AboutRight>
+        <AboutLeft>24 KWI 2027 00:00</AboutLeft>
+        <AboutRight>od Bartek Mróz</AboutRight>
       </About>
     </Wrapper>
   </NewsTemplate>
