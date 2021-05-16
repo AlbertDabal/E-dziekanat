@@ -33,7 +33,6 @@ const MainTemplate = () => (
       <Button typeButton="stypendia">ZALOGUJ</Button>
       <Input placeholder="Nazwa użytkownika" />
       <TextArea placeholder="Nazwa użytkownika" />
-      <LessonPlanList />
     </ThemeProvider>
   </Wrapper>
 );

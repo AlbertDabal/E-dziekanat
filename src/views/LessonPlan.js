@@ -22,42 +22,42 @@ const WrapperPlan = styled.div`
 
 const LesssonPlan = () => {
   const [dataPlan, setDataPlan] = useState(null);
+  const [date, setDate] = useState(null);
 
   useEffect(() => {
     FetchPlanCurrent();
   }, []);
 
   async function FetchPlan(kodPlanu, idPola) {
-    const res = await SetPlan(kodPlanu, idPola);
-
-    if (res) {
+    if (date) {
+      const res = await SetPlan(kodPlanu, idPola, date);
       setDataPlan(res.data);
     }
   }
 
   async function FetchPlanCurrent() {
     const res = await SetActualyPlan();
-    setDataPlan(res.data);
+    try {
+      setDataPlan(res.data);
+      setDate({ DataOd: res.data.DataOd, DataDo: res.data.DataDo });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
-  if (dataPlan !== null) {
-    return (
-      <DashboardTemplate>
-        <Wrapper>
-          <SelectPlan TypePlan={FetchPlan} />
-          <WrapperPlan>
-            {dataPlan.Tydzien.map((item, index) => (
-              <LessonPlanList dataPlanLesson={item} key={nanoid()} />
-            ))}
-          </WrapperPlan>
-        </Wrapper>
-      </DashboardTemplate>
-    );
-  }
   return (
     <DashboardTemplate>
       <Wrapper>
-        <Heading>Ładowanie planu...</Heading>
+        <SelectPlan TypePlan={FetchPlan} />
+        {dataPlan !== null && date !== null ? (
+          <WrapperPlan>
+            {dataPlan.Tydzien.map((item) => (
+              <LessonPlanList dataPlanLesson={item} key={nanoid()} />
+            ))}
+          </WrapperPlan>
+        ) : (
+          <Heading>Ładowanie planu...</Heading>
+        )}
       </Wrapper>
     </DashboardTemplate>
   );
