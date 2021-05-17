@@ -11,19 +11,18 @@ export const SetSelectDefault = async () => {
     .catch((error) => {
       console.log(error);
     });
-  console.log(res);
 
   return res;
 };
 
-export const SetSelect = async () => {
+export const SetSelect = async (roleSelected) => {
   const idUzytkownika = sessionStorage.getItem('Id_uzytkownika');
   const kodRoli = sessionStorage.getItem('Kod_roli');
   const res = await axios
     .post(`${process.env.REACT_APP_ADDRESS}plan/wypelnij_combobox`, {
       Id_uzytkownika: idUzytkownika,
       Kod_roli: kodRoli,
-      KodPlanu: 'wykladowca',
+      KodPlanu: roleSelected,
     })
     .catch((error) => {
       console.log(error);

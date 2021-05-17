@@ -23,32 +23,25 @@ function SelectPlan({ TypePlan }) {
   const [roleSelected, setRoleSelected] = useState(sessionStorage.getItem('Kod_roli'));
 
   useEffect(() => {
-    const kodRoli = sessionStorage.getItem('Kod_roli');
-    if (kodRoli === 'student') {
-      FetchSelectStudent();
-    } else {
-      FetchSelectTeacher();
-      TypePlan(roleSelected, itemSelected);
-    }
-  }, [roleSelected]);
+    FetchSelectDefult();
+  }, []);
 
-  async function FetchSelectStudent() {
+  async function FetchSelectDefult() {
     const res = await SetSelectDefault();
     try {
       setItemSelected(res.data.IdDomyslne);
       setDataSelect(res.data);
-      TypePlan(roleSelected, res.data.IdDomyslne);
     } catch (err) {
       console.log(err);
     }
   }
 
-  async function FetchSelectTeacher() {
-    const res = await SetSelectDefault();
+  async function FetchSelect() {
+    const res = await SetSelect(roleSelected);
     try {
-      setItemSelected(res.data.IdDomyslne);
-
+      setItemSelected(0);
       setDataSelect(res.data);
+      TypePlan(roleSelected, itemSelected);
     } catch (err) {
       console.log(err);
     }
@@ -56,12 +49,14 @@ function SelectPlan({ TypePlan }) {
 
   function handleChange(event) {
     setItemSelected(event.target.value);
-
     TypePlan(roleSelected, event.target.value);
   }
 
   function handleChangeRole(event) {
     setRoleSelected(event.target.value);
+    console.log(event.target.value);
+    FetchSelect();
+    TypePlan(event.target.value, itemSelected);
   }
   if (dataSelect !== null) {
     return (

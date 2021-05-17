@@ -5,7 +5,6 @@ import NavigationMainData from 'data/NavigationMainData';
 import { useLocation } from 'react-router-dom';
 import * as AiIcons from 'react-icons/ai';
 import * as FaIcons from 'react-icons/fa';
-import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 const Wrapper = styled.div`
@@ -59,14 +58,11 @@ const WrapperRight = styled.div`
 `;
 
 const TopBar = ({ news }) => {
-  const isLogged = useSelector((state) => state);
   const location = useLocation().pathname;
-  const pathName = NavigationMainData.filter((item, index) => item.path === location);
+  const pathName = NavigationMainData.filter((item) => item.path === location);
 
-  const test = sessionStorage.getItem('ImieNazwisko');
   return (
     <Wrapper>
-      {console.log(test)}
       <WrapperLeft>
         <SvgContainer>{news ? NavigationMainData[5].icon : pathName[0].icon}</SvgContainer>
 
