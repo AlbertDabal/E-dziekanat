@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import MainTemplate from 'templates/MainTemplate';
 import GlobalStyle from 'theme/GlobalStyle';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'theme/MainThame';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import Login from 'views/Login';
 import LostPassword from 'views/LostPassword';
 import ChangePassword from 'views/ChangePassword';
@@ -24,11 +25,21 @@ const Root = () => (
         <Route exact path={routes.login} component={Login} />
         <Route exact path={routes.lostPassword} component={LostPassword} />
         <Route exact path={routes.changePassword} component={ChangePassword} />
-        <Route exact path={routes.dashboard} component={Dashboard} />
-        <Route exact path={routes.lessonPlan} component={LessonPlan} />
-        <Route exact path={routes.news} component={News} />
-        <Route exact path={routes.newsbig} component={NewsBig} />
-        <Route exact path={routes.documents} component={Documents} />
+        <PrivateRoute exact path={routes.dashboard}>
+          <Dashboard />
+        </PrivateRoute>
+        <PrivateRoute exact path={routes.lessonPlan}>
+          <LessonPlan />
+        </PrivateRoute>
+        <PrivateRoute exact path={routes.news}>
+          <News />
+        </PrivateRoute>
+        <PrivateRoute exact path={routes.newsbig}>
+          <NewsBig />
+        </PrivateRoute>
+        <PrivateRoute exact path={routes.documents}>
+          <Documents />
+        </PrivateRoute>
         <Route exact path={routes.test} component={MainTemplate} />
       </Switch>
     </Router>
@@ -36,3 +47,13 @@ const Root = () => (
 );
 
 export default Root;
+
+function PrivateRoute({ children }) {
+  return (
+    <Route render={() => (sessionStorage.getItem('isAuth') !== null ? children : <Redirect to={routes.wellcome} />)} />
+  );
+}
+
+PrivateRoute.propTypes = {
+  children: PropTypes.element.isRequired,
+};

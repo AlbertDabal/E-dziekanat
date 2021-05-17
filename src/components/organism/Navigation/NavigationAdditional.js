@@ -1,14 +1,20 @@
+import Button from 'components/atoms/Button/Button';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-
 import NavigationAdditionalData from './NavigationAdditionalData';
 
 const NavWrapper = styled.nav`
   width: 100%;
   display: flex;
-  padding: 4rem 0;
-  border-top: 1px solid #457B9D;
+  padding: 4rem 0 1rem 0;
+  border-top: 1px solid #457b9d;
+`;
+
+const ButtonStyled = styled(Button)`
+  margin-top: 30px;
+  width: 90%;
+  margin-left: 5%;
 `;
 
 const NavList = styled.ul`
@@ -23,9 +29,9 @@ const NavItem = styled.li`
   text-decoration: none;
 
   :hover {
-    background-color: #24416B;
+    background-color: #24416b;
     border-left: 4px solid #ffffff;
-    transition: all .3s;
+    transition: all 0.3s;
   }
 `;
 
@@ -47,19 +53,29 @@ const NavItemLink = styled(Link)`
   }
 `;
 
-const NavigationAdditional = () => (
-  <NavWrapper>
-    <NavList>
-      {NavigationAdditionalData.map((item) => (
-        <NavItem key={item.id} className={item.cName}>
-          <NavItemLink to={item.path}>
-            {item.icon}
-            <span>{item.title}</span>
-          </NavItemLink>
-        </NavItem>
-      ))}
-    </NavList>
-  </NavWrapper>
-);
+const NavigationAdditional = () => {
+  const history = useHistory();
 
+  const Logout = () => {
+    sessionStorage.clear();
+    history.push('/');
+  };
+  return (
+    <NavWrapper>
+      <NavList>
+        {NavigationAdditionalData.map((item) => (
+          <NavItem key={item.id} className={item.cName}>
+            <NavItemLink to={item.path}>
+              {item.icon}
+              <span>{item.title}</span>
+            </NavItemLink>
+          </NavItem>
+        ))}
+        <ButtonStyled type="button" typeButton="zaloguj" onClick={() => Logout()}>
+          WYLOGUJ
+        </ButtonStyled>
+      </NavList>
+    </NavWrapper>
+  );
+};
 export default NavigationAdditional;

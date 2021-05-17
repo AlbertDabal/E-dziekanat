@@ -63,6 +63,7 @@ const Dashboard = (props) => {
     const res = await SetDashboardData();
     setDashbordData(res.data);
   }
+
   return (
     <DashboardTemplate>
       {dashboardData !== null ? (

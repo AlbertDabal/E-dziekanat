@@ -31,16 +31,17 @@ const LogoImage = styled.img`
 
 const Title = styled.div`
   display: flex;
-  margin: 10px;
-  font-size: 38px;
+  margin-top: 30px;
+  font-size: 26px;
+  font-weight: 600;
   line-height: 38px;
-  margin-top: 25px;
+  margin-top: 40px;
 `;
 
 const Description = styled.div`
   display: flex;
   height: 50%;
-  font-size: 22px;
+  font-size: 16px;
   line-height: 22px;
   margin: 55px;
 `;
@@ -68,13 +69,12 @@ const NewsBig = ({ match }) => (
       <Image>
         <LogoImage src={logo} />
       </Image>
-      <Title>tytul_6</Title>
+      <Title>CENTRUM BEZPIECZENSTWA CYBERPRZESTRZENI</Title>
       <Description>
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry
-        standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-        a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
-        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
-        Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions
+        Szanowni Panstwo, Narodowe Centrum Bezpieczenstwa Cyberprzestrzeni zaprasza na spotkanie, które bedzie dotyczylo
+        sposobów wstapienia do armii oraz korzysci i mozliwosci rozwoju zwiazanych z pelnieniem sluzby w Wojskach Obrony
+        Cyberprzestrzeni. Spotkanie zazwyczaj zajmuje okolo 80-90 minut. Zainteresowane osoby proszone sa o wyslanie
+        e-maila do dziekanatu (dziekanat@wsiz.wroc.pl) z informacja o checi uczestnictwa
       </Description>
       <About>
         <AboutLeft>24 KWI 2027 00:00</AboutLeft>

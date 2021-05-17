@@ -6,13 +6,10 @@ import Paragraph from 'components/atoms/Paragraph/Paragraph';
 
 const Wrapper = styled.div`
   display: flex;
-  align-items: flex-start;
-  flex-direction: column;
 
-  width: 730px;
-  height: 389.5px;
+  flex-direction: column;
+  height: 100%;
   border-radius: 18px;
-  margin: 10px;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   &:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
@@ -25,7 +22,6 @@ const Content = styled.div`
   width: 100%;
   padding: 0px 10px;
   font-size: 12px;
-  line-height: 18px;
 `;
 
 const Date = styled.div`
@@ -35,16 +31,8 @@ const Date = styled.div`
   width: 15%;
   border-right: 1px solid;
   font-size: 18px;
+  justify-content: center;
   flex-direction: column;
-  padding-top: 30px;
-`;
-
-const Image = styled.div`
-  display: flex;
-  width: 100%;
-  height: 65%;
-  background: black;
-  border-radius: 18px 18px 0px 0px;
 `;
 
 const Bottom = styled.div`
@@ -55,24 +43,26 @@ const Bottom = styled.div`
 `;
 
 const Title = styled.div`
-  font-size: 28px;
+  font-size: 26px;
   line-height: 36px;
   display: flex;
   align-items: center;
-  letter-spacing: 1.25373px;
 `;
 
 const Description = styled.div`
   font-family: Poppins;
   font-size: 14px;
-  line-height: 18px;
+  margin-top: 10px;
   display: flex;
   align-items: center;
 `;
 
-const LogoImage = styled.img`
+const LogoImage = styled.div`
   display: flex;
+  height: 100%;
   width: 100%;
+  background: url('${logo}') no-repeat right top;
+  background-size: cover;
   border-radius: 18px 18px 0px 0px;
 `;
 
@@ -92,9 +82,7 @@ const NewsItem = ({ data, tytul, tekst }) => {
   console.log(month);
   return (
     <Wrapper onClick={() => console.log('Clicked')}>
-      <Image>
-        <LogoImage src={logo} />
-      </Image>
+      <LogoImage src={logo} />
       <Bottom>
         <Date>
           <StyledParagraph>{`${day} ${monthName}`}</StyledParagraph>
