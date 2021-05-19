@@ -90,8 +90,8 @@ const ChangePassword = ({ props }) => {
       <Wrapper>
         <Form onSubmit={ChangePasswordHandler}>
           <Heading>Aktualizuj Hasło</Heading>
-          <InputStyled placeholder="Hasło" onChange={PasswordCatcher} />
-          <InputStyled placeholder="Powtórz hasło" onChange={PasswordConfirmCatcher} />
+          <InputStyled type="password" placeholder="Hasło" onChange={PasswordCatcher} />
+          <InputStyled type="password" placeholder="Powtórz hasło" onChange={PasswordConfirmCatcher} />
           <ButtonStyled type="submit" typeButton="zaloguj">
             aktualizuj hasło
           </ButtonStyled>

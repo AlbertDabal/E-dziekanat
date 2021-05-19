@@ -7,15 +7,14 @@ import DashboardTemplate from 'templates/DashboardTemplate';
 
 const Wrapper = styled.div`
   display: grid;
-  height: 85vh;
-  width: 100%;
+  height: 100%;
   grid-template-columns: 50% 50%;
-  text-decoration: none;
 `;
 
 const ButtonNews = styled(Link)`
   text-decoration: none;
   color: black;
+  margin: 10px;
 `;
 
 const News = () => {

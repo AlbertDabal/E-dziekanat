@@ -11,6 +11,14 @@ export const SetLogin = async (login, password, match) => {
       console.log(error);
     });
 
+  if (res.data !== null) {
+    console.log(res);
+    sessionStorage.setItem('isAuth', true);
+    sessionStorage.setItem('ImieNazwisko', res.data.ImieNazwisko);
+    sessionStorage.setItem('Id_uzytkownika', res.data.Id_uzytkownika);
+    sessionStorage.setItem('Kod_roli', res.data.Kod_roli);
+  }
+
   return res;
 };
 

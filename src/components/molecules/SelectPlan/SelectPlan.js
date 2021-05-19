@@ -1,84 +1,78 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Heading from 'components/atoms/Heading/Heading';
-import { SetSelect, SetSelectDefault } from 'api/FetchPlan';
 import { nanoid } from 'nanoid';
+import Button from 'components/atoms/Button/Button';
 
 const Select = styled.select`
   font-size: ${({ theme }) => theme.fontSize.s};
   margin: 0px 30px 0 20px;
+  border-radius: 30px;
+  padding: 5px 10px;
+  outline: none;
 `;
 
 const Wrapper = styled.div`
+  margin-top: 20px;
   margin-left: 10px;
   display: flex;
   margin-bottom: 25px;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 `;
 
-function SelectPlan({ TypePlan }) {
-  const [dataSelect, setDataSelect] = useState(null);
-  const [itemSelected, setItemSelected] = useState(null);
-  const [roleSelected, setRoleSelected] = useState('student');
+const StyledButton = styled(Button)`
+  height: 40px;
+  cursor: pointer;
+  margin-right: 30px;
+  text-transform: uppercase;
+`;
 
-  useEffect(() => {
-    if (roleSelected === 'student') {
-      FetchSelectStudent();
-    } else {
-      FetchSelectTeacher();
-      TypePlan(roleSelected, itemSelected);
-    }
-  }, [roleSelected]);
+const Left = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
-  async function FetchSelectStudent() {
-    const res = await SetSelectDefault();
-    try {
-      setItemSelected(res.data.IdDomyslne);
-      setDataSelect(res.data);
-      TypePlan(roleSelected, res.data.IdDomyslne);
-    } catch (err) {
-      console.log(err);
-    }
-  }
+const Right = styled.div``;
 
-  async function FetchSelectTeacher() {
-    const res = await SetSelect();
-    try {
-      setItemSelected(0);
-
-      setDataSelect(res.data);
-    } catch (err) {
-      console.log(err);
-    }
-  }
+function SelectPlan({ TypePlan, dataSelect, FetchSelect, itemSelected, setItemSelected, NextDay }) {
+  const [roleSelected, setRoleSelected] = useState(sessionStorage.getItem('Kod_roli'));
 
   function handleChange(event) {
     setItemSelected(event.target.value);
-
     TypePlan(roleSelected, event.target.value);
   }
 
   function handleChangeRole(event) {
     setRoleSelected(event.target.value);
+    FetchSelect(event.target.value);
   }
-  if (dataSelect !== null) {
+  if (dataSelect) {
     return (
       <Wrapper>
-        <Heading>Rola:</Heading>
-        <Select value={roleSelected} onChange={handleChangeRole}>
-          <option value="student">Student</option>
-          <option value="wykladowca">Wykładowca</option>
-        </Select>
-        <Heading>{roleSelected === 'wykladowca' ? 'Wykładowca:' : 'Grupa:'}</Heading>
-        <Select value={itemSelected} onChange={handleChange} defaultValue={dataSelect.IdDomyslne}>
-          {roleSelected === 'wykladowca' ? <option value={0}>-------------</option> : null}
-          {dataSelect.dane.map((item) => (
-            <option value={item.value} key={nanoid()}>
-              {item.visible}
-            </option>
-          ))}
-        </Select>
+        <StyledButton style={{ backgroundColor: '#457B9D' }}>Poprzedni</StyledButton>
+        <Left>
+          <Heading>Rola</Heading>
+          <Select value={roleSelected} onChange={handleChangeRole}>
+            <option value="student">Student</option>
+            <option value="wykladowca">Wykładowca</option>
+          </Select>
+          <Heading>{roleSelected === 'wykladowca' ? 'Wykładowca:' : 'Grupa:'}</Heading>
+          <Select value={itemSelected} onChange={handleChange} defaultValue={dataSelect.IdDomyslne}>
+            {roleSelected === 'wykladowca' ? <option value={0}>-------------</option> : null}
+            {dataSelect.dane.map((item) => (
+              <option value={item.value} key={nanoid()}>
+                {item.visible}
+              </option>
+            ))}
+          </Select>
+        </Left>
+        <Right>
+          <StyledButton onClick={() => NextDay()}>Następny</StyledButton>
+        </Right>
       </Wrapper>
     );
   }
@@ -87,6 +81,11 @@ function SelectPlan({ TypePlan }) {
 
 SelectPlan.propTypes = {
   TypePlan: PropTypes.func.isRequired,
+  setItemSelected: PropTypes.func.isRequired,
+  dataSelect: PropTypes.element.isRequired,
+  itemSelected: PropTypes.element.isRequired,
+  FetchSelect: PropTypes.func.isRequired,
+  NextDay: PropTypes.func.isRequired,
 };
 
 export default SelectPlan;

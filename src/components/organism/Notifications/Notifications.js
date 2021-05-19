@@ -15,10 +15,11 @@ const StyledHeading = styled(Heading)`
 const Notifications = ({ dataNotifications }) => (
   <Wrapper>
     <StyledHeading big>Powiadomienia</StyledHeading>
-    {console.log(dataNotifications)}
-    {dataNotifications.map((item) => (
-      <NotificationsItem tresc={item.Tresc} />
-    ))}
+    {dataNotifications ? (
+      dataNotifications.map((item) => <NotificationsItem tresc={item.Tresc} />)
+    ) : (
+      <StyledHeading>Nie posiadasz zadnych powiadomnień</StyledHeading>
+    )}
   </Wrapper>
 );
 

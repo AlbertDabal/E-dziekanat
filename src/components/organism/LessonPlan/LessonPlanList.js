@@ -1,18 +1,21 @@
 import Heading from 'components/atoms/Heading/Heading';
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { nanoid } from 'nanoid';
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
 import LessonPlanItem from './LessonPlanItem';
+// prettier-ignore
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: ${({ dashboard }) => (dashboard === 'dashboard' ? '50%' : '20%')};
-  margin: 0px 5px;
+  width: ${({ dashboard }) => (dashboard === 'dashboard' ? '50%' : '14%')};
+  
+
+  margin: 0px 2px;
 `;
 
 const StyledHeading = styled.div`
