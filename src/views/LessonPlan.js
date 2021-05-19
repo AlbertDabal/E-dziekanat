@@ -76,17 +76,28 @@ const LesssonPlan = () => {
     setItemSelected(item);
   };
 
-  function NextDay() {
-    console.log(date.DataDo);
-    const datee = new Date(Date.parse(date.DataDo));
-    console.log(`${datee.getFullYear()}-${datee.getMonth() + 1}-${datee.getUTCDate()}`);
+  function NextDay(kodPlanu) {
+    setDate({ DataOd: CountNextWeek(date.DataOd, true), DataDo: CountNextWeek(date.DataDo, true) });
+    console.log(date);
+    FetchPlan(kodPlanu, itemSelected);
+  }
 
-    // const test = Date.parse(date.DataDo) + 7;
-    // const nowa = new Date();
+  function PrevDay(kodPlanu) {
+    setDate({ DataOd: CountNextWeek(date.DataOd, false), DataDo: CountNextWeek(date.DataDo, false) });
+    console.log(date);
+    FetchPlan(kodPlanu, itemSelected);
+  }
 
-    // const data = date.getDate() + 7;
+  function CountNextWeek(data, type) {
+    const dataOd = data.substr(0, 10);
+    const utc = new Date(dataOd);
+    if (type) {
+      utc.setDate(utc.getDate() + 7);
+    } else {
+      utc.setDate(utc.getDate() - 7);
+    }
 
-    // console.log(nowa);
+    return utc.toJSON().substr(0, 10);
   }
 
   return (
@@ -99,6 +110,7 @@ const LesssonPlan = () => {
           itemSelected={itemSelected}
           setItemSelected={SetItem}
           NextDay={NextDay}
+          PrevDay={PrevDay}
         />
         {dataPlan !== null && date !== null ? (
           <WrapperPlan>
