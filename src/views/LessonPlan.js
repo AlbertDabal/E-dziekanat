@@ -64,7 +64,7 @@ const LesssonPlan = () => {
     const res = await SetActualyPlan();
     try {
       setDataPlan(res.data);
-      setDate({ DataOd: res.data.DataOd, DataDo: res.data.DataDo });
+      setDate({ DataOd: res.data.DataOd.substr(0, 10), DataDo: res.data.DataDo.substr(0, 10) });
     } catch (err) {
       console.log(err);
     }
@@ -76,21 +76,30 @@ const LesssonPlan = () => {
     setItemSelected(item);
   };
 
-  function NextDay(kodPlanu) {
-    setDate({ DataOd: CountNextWeek(date.DataOd, true), DataDo: CountNextWeek(date.DataDo, true) });
-    console.log(date);
-    FetchPlan(kodPlanu, itemSelected);
+  async function NextDay(kodPlanu) {
+    const data = { DataOd: CountNextWeek(date.DataOd, true), DataDo: CountNextWeek(date.DataDo, true) };
+    try {
+      const res = await SetPlan(kodPlanu, itemSelected, data);
+      setDataPlan(res.data);
+      setDate(data);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
-  function PrevDay(kodPlanu) {
-    setDate({ DataOd: CountNextWeek(date.DataOd, false), DataDo: CountNextWeek(date.DataDo, false) });
-    console.log(date);
-    FetchPlan(kodPlanu, itemSelected);
+  async function PrevDay(kodPlanu) {
+    const data = { DataOd: CountNextWeek(date.DataOd, false), DataDo: CountNextWeek(date.DataDo, false) };
+    try {
+      const res = await SetPlan(kodPlanu, itemSelected, data);
+      setDataPlan(res.data);
+      setDate(data);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   function CountNextWeek(data, type) {
-    const dataOd = data.substr(0, 10);
-    const utc = new Date(dataOd);
+    const utc = new Date(data);
     if (type) {
       utc.setDate(utc.getDate() + 7);
     } else {
