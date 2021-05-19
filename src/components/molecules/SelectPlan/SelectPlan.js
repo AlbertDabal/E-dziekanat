@@ -15,7 +15,7 @@ const Select = styled.select`
 `;
 
 const Wrapper = styled.div`
-  margin-top: 20px;
+  margin-top: 0px;
   margin-left: 10px;
   display: flex;
   margin-bottom: 25px;
