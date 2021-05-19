@@ -37,7 +37,9 @@ const LessonPlanList = ({ dataPlanLesson, dashboard }) => (
       <Paragraph>{dataPlanLesson.DzienTygodnia}</Paragraph>
     </StyledHeading>
     {dataPlanLesson.Zajecia ? (
-      dataPlanLesson.Zajecia.map((item) => <LessonPlanItem dataLessonItem={item} key={nanoid()} />)
+      dataPlanLesson.Zajecia.map((item) => (
+        <LessonPlanItem dataLessonItem={item} key={nanoid()} dashboard={dashboard} />
+      ))
     ) : (
       <LessonPlanEmpty />
     )}

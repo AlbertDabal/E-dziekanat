@@ -12,7 +12,8 @@ const Wrapper = styled.div`
   width: 100%;
   height: 170px;
 
-  
+
+   
 
   ${({ typeLesson }) => typeLesson === 'Laboratoria'
   && css`
@@ -47,9 +48,7 @@ const Title = styled.div`
 `;
 // prettier-ignore
 const ParagraphSmall = styled(Paragraph)`
-  
-    font-size: 12px;
-  
+  font-size: ${({ dashboard }) => (dashboard === 'dashboard' ? '16px' : '13px')};
 `;
 
 const Bottom = styled.div`
@@ -66,7 +65,7 @@ const Link = styled.a`
   text-transform: uppercase;
   font-weight: 700;
   color: white;
-  font-size: 13px;
+  font-size: ${({ dashboard }) => (dashboard === 'dashboard' ? '16px' : '13px')};
   padding: 2px 8px;
   cursor: pointer;
 
@@ -89,29 +88,33 @@ const Link = styled.a`
       background-color: ${({ theme }) => theme.buttonLessonColorSem};
     `}
 `;
-// prettier-ignore
 const LessonType = styled(Paragraph)`
   font-weight: 700;
   color: white;
-  text-transform: uppercase;  
-    font-size: 13px;
+  text-transform: uppercase;
+  font-size: ${({ dashboard }) => (dashboard === 'dashboard' ? '16px' : '13px')};
 `;
-// prettier-ignore
-const LessonPlanItem = ({ dataLessonItem }) => (
-  <Wrapper typeLesson={dataLessonItem.Typ}>
-    <Title>
-      <LessonType>{dataLessonItem.Typ}</LessonType>
-      {/* eslint-disable-next-line max-len */}
-      <ParagraphSmall>{`${dataLessonItem.GodzRozp.substr(11, 5)}-${dataLessonItem.GodzZakon.substr(11, 5)}`}</ParagraphSmall>
-    </Title>
-    <ParagraphSmall>{dataLessonItem.Nazwa}</ParagraphSmall>
-    <Bottom>
-      {/* eslint-disable-next-line max-len */}
-      <ParagraphSmall>{`${dataLessonItem.ImieWykladowcy.substr(0, 1)} ${dataLessonItem.NazwiskoWykladowcy}`}</ParagraphSmall>
-      <Link typeLesson={dataLessonItem.Typ}>przejdz</Link>
-    </Bottom>
-  </Wrapper>
-);
+
+const LessonPlanItem = ({ dataLessonItem, dashboard }) => {
+  const data = `${dataLessonItem.GodzRozp.substr(11, 5)}-${dataLessonItem.GodzZakon.substr(11, 5)}`;
+  const wykladowca = `${dataLessonItem.ImieWykladowcy.substr(0, 1)} ${dataLessonItem.NazwiskoWykladowcy}`;
+  return (
+    <Wrapper typeLesson={dataLessonItem.Typ}>
+      <Title>
+        <LessonType dashboard={dashboard}>{dataLessonItem.Typ}</LessonType>
+
+        <ParagraphSmall dashboard={dashboard}>{data}</ParagraphSmall>
+      </Title>
+      <ParagraphSmall dashboard={dashboard}>{dataLessonItem.Nazwa}</ParagraphSmall>
+      <Bottom>
+        <ParagraphSmall dashboard={dashboard}>{wykladowca}</ParagraphSmall>
+        <Link typeLesson={dataLessonItem.Typ} dashboard={dashboard}>
+          przejdz
+        </Link>
+      </Bottom>
+    </Wrapper>
+  );
+};
 
 LessonPlanItem.propTypes = {
   dataLessonItem: PropTypes.shape({
@@ -129,6 +132,11 @@ LessonPlanItem.propTypes = {
     Opis: PropTypes.string,
     Typ: PropTypes.string,
   }).isRequired,
+  dashboard: PropTypes.string,
+};
+
+LessonPlanItem.defaultProps = {
+  dashboard: 'lesson',
 };
 
 export default LessonPlanItem;
