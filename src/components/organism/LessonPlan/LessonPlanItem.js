@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   align-items: flex-start;
   justify-content:space-between;
   flex-direction: column;
-  padding: 10px 20px;
+  padding: 10px 10px;
   width: 100%;
   height: 170px;
 
@@ -42,20 +42,21 @@ const Title = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 20px;
+  align-items: center;
+  margin-bottom: 5px;
 `;
 // prettier-ignore
 const ParagraphSmall = styled(Paragraph)`
-  ${sessionStorage.getItem('Kod_roli') === 'wykladowca'
-  && css`
+  
     font-size: 12px;
-  `}
+  
 `;
 
 const Bottom = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
+  align-items: center;
   margin-top: 20px;
 `;
 // prettier-ignore
@@ -64,15 +65,12 @@ const Link = styled.a`
   text-decoration: none;
   text-transform: uppercase;
   font-weight: 700;
-  font-size: 16px;
   color: white;
-  padding: 2px 10px;
+  font-size: 13px;
+  padding: 2px 8px;
+  cursor: pointer;
 
-  ${sessionStorage.getItem('Kod_roli') === 'wykladowca'
-  && css`
-    font-size: 12px;
-     padding: 2px 10px;
-  `}
+ 
 
   ${({ typeLesson }) => typeLesson === 'Laboratoria'
   && css`
@@ -95,12 +93,8 @@ const Link = styled.a`
 const LessonType = styled(Paragraph)`
   font-weight: 700;
   color: white;
-  text-transform: uppercase;
-
-  ${sessionStorage.getItem('Kod_roli') === 'wykladowca'
-  && css`
-    font-size: 12px;
-  `}
+  text-transform: uppercase;  
+    font-size: 13px;
 `;
 // prettier-ignore
 const LessonPlanItem = ({ dataLessonItem }) => (

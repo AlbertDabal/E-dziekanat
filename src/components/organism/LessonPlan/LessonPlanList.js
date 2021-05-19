@@ -12,13 +12,10 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: ${({ dashboard }) => (dashboard === 'dashboard' ? '50%' : '20%')};
-  ${sessionStorage.getItem('Kod_roli') === 'wykladowca'
-  && css`
-    width: 14;
-  `}
+  width: ${({ dashboard }) => (dashboard === 'dashboard' ? '50%' : '14%')};
+  
 
-  margin: 0px 5px;
+  margin: 0px 2px;
 `;
 
 const StyledHeading = styled.div`
