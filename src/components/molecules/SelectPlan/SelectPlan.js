@@ -38,7 +38,7 @@ const Left = styled.div`
 
 const Right = styled.div``;
 
-function SelectPlan({ TypePlan, dataSelect, FetchSelect, itemSelected, setItemSelected, NextDay }) {
+function SelectPlan({ TypePlan, dataSelect, FetchSelect, itemSelected, setItemSelected, NextDay, PrevDay }) {
   const [roleSelected, setRoleSelected] = useState(sessionStorage.getItem('Kod_roli'));
 
   function handleChange(event) {
@@ -53,7 +53,9 @@ function SelectPlan({ TypePlan, dataSelect, FetchSelect, itemSelected, setItemSe
   if (dataSelect) {
     return (
       <Wrapper>
-        <StyledButton style={{ backgroundColor: '#457B9D' }}>Poprzedni</StyledButton>
+        <StyledButton style={{ backgroundColor: '#457B9D' }} onClick={() => PrevDay(roleSelected)}>
+          Poprzedni
+        </StyledButton>
         <Left>
           <Heading>Rola</Heading>
           <Select value={roleSelected} onChange={handleChangeRole}>
@@ -71,7 +73,7 @@ function SelectPlan({ TypePlan, dataSelect, FetchSelect, itemSelected, setItemSe
           </Select>
         </Left>
         <Right>
-          <StyledButton onClick={() => NextDay()}>Następny</StyledButton>
+          <StyledButton onClick={() => NextDay(roleSelected)}>Następny</StyledButton>
         </Right>
       </Wrapper>
     );
@@ -86,6 +88,7 @@ SelectPlan.propTypes = {
   itemSelected: PropTypes.element.isRequired,
   FetchSelect: PropTypes.func.isRequired,
   NextDay: PropTypes.func.isRequired,
+  PrevDay: PropTypes.func.isRequired,
 };
 
 export default SelectPlan;
