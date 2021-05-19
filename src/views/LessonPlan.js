@@ -77,7 +77,9 @@ const LesssonPlan = () => {
   };
 
   function NextDay() {
-    console.log(date.DataDo.toJSON());
+    console.log(date.DataDo);
+    const datee = new Date(Date.parse(date.DataDo));
+    console.log(`${datee.getFullYear()}-${datee.getMonth() + 1}-${datee.getUTCDate()}`);
 
     // const test = Date.parse(date.DataDo) + 7;
     // const nowa = new Date();

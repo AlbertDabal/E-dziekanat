@@ -24,7 +24,7 @@ const Content = styled.div`
   font-size: 12px;
 `;
 
-const Date = styled.div`
+const Datee = styled.div`
   display: flex;
   align-items: center;
   text-align: center;
@@ -71,23 +71,32 @@ const StyledParagraph = styled(Paragraph)`
   line-height: 27px;
 `;
 
+function formatDate(data) {
+  const dob = new Date(data);
+
+  const monthNames = ['STY', 'LUT', 'MAR', 'KWI', 'MAJ', 'CZE', 'LIP', 'SIE', 'WRZ', 'PAŹ', 'LIS', 'GRU'];
+
+  const day = dob.getDate();
+  const monthIndex = dob.getMonth();
+  const year = dob.getFullYear();
+  return [year, monthNames[monthIndex], day];
+}
+
 const NewsItem = ({ data, tytul, tekst }) => {
-  const year = data.substring(0, 4);
-  const month = data.substring(6, 7);
-  const day = data.substring(8, 10);
+  console.log(formatDate(data));
+  const daty = formatDate(data);
+  const year = daty[0];
+  const monthName = daty[1];
+  const day = daty[2];
 
-  const monthNames = ['zero', 'STY', 'LUT', 'MAR', 'KWI', 'MAJ', 'CZE', 'LIP', 'SIE', 'WRZ', 'PAŹ', 'LIS', 'GRU'];
-
-  const monthName = monthNames[month];
-  console.log(month);
   return (
     <Wrapper onClick={() => console.log('Clicked')}>
       <LogoImage src={logo} />
       <Bottom>
-        <Date>
+        <Datee>
           <StyledParagraph>{`${day} ${monthName}`}</StyledParagraph>
           <StyledParagraph>{year}</StyledParagraph>
-        </Date>
+        </Datee>
         <Content>
           <Title>{tytul}</Title>
           <Description>{tekst.length > 250 ? `${tekst.substring(0, 250)}...` : tekst}</Description>
