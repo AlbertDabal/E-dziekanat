@@ -4,10 +4,14 @@ import PropTypes from 'prop-types';
 import NewsTemplate from 'templates/NewsTemplate';
 
 import logo from 'images/backgroud.jpg';
+import Button from 'components/atoms/Button/Button';
+import { formatDataTest } from 'function/FormatDatePl';
 
 const Wrapper = styled.div`
+  position: absolute;
   display: flex;
-  width: 100%;
+  background-color: white;
+  width: 78.5%;
   height: 86vh;
   text-decoration: none;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
@@ -49,8 +53,9 @@ const Description = styled.div`
 const About = styled.div`
   display: flex;
   margin: 20px;
-  width: 100%;
+  width: 96%;
   justify-content: space-between;
+  align-items: center;
   font-size: 16px;
   line-height: 16px;
 `;
@@ -58,31 +63,29 @@ const AboutLeft = styled.div`
   display: flex;
   margin-left: 50px;
 `;
-const AboutRight = styled.div`
-  display: flex;
-  margin-right: 50px;
+
+const ButtonStyled = styled(Button)`
+  height: 40px;
 `;
 
-const NewsBig = ({ match }) => (
-  <NewsTemplate>
+const NewsBig = ({ match, data, IsOpen }) => {
+  const date = formatDataTest(data.Data_wystawienia);
+  return (
     <Wrapper>
       <Image>
         <LogoImage src={logo} />
       </Image>
-      <Title>CENTRUM BEZPIECZENSTWA CYBERPRZESTRZENI</Title>
-      <Description>
-        Szanowni Panstwo, Narodowe Centrum Bezpieczenstwa Cyberprzestrzeni zaprasza na spotkanie, które bedzie dotyczylo
-        sposobów wstapienia do armii oraz korzysci i mozliwosci rozwoju zwiazanych z pelnieniem sluzby w Wojskach Obrony
-        Cyberprzestrzeni. Spotkanie zazwyczaj zajmuje okolo 80-90 minut. Zainteresowane osoby proszone sa o wyslanie
-        e-maila do dziekanatu (dziekanat@wsiz.wroc.pl) z informacja o checi uczestnictwa
-      </Description>
+      <Title>{data.Tytul}</Title>
+      <Description>{data.Tresc}</Description>
       <About>
-        <AboutLeft>24 KWI 2027 00:00</AboutLeft>
-        <AboutRight>od Bartek Mróz</AboutRight>
+        <ButtonStyled onClick={() => IsOpen()} typeButton="zaloguj">
+          Powrót
+        </ButtonStyled>
+        <AboutLeft>{`${date[2]} ${date[1]} ${date[0]} od ${data.Tworca}`}</AboutLeft>
       </About>
     </Wrapper>
-  </NewsTemplate>
-);
+  );
+};
 
 export default NewsBig;
 
@@ -92,4 +95,11 @@ NewsBig.propTypes = {
       id: PropTypes.node,
     }).isRequired,
   }).isRequired,
+  data: PropTypes.shape({
+    Data_wystawienia: PropTypes.string,
+    Tytul: PropTypes.string,
+    Tresc: PropTypes.string,
+    Tworca: PropTypes.string,
+  }).isRequired,
+  IsOpen: PropTypes.func.isRequired,
 };

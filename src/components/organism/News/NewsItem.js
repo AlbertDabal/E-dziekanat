@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import logo from 'images/backgroud.jpg';
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
+import NewsBig from 'views/NewsBig';
+import { formatDataTest } from 'function/FormatDatePl';
 
 const Wrapper = styled.div`
   display: flex;
@@ -71,31 +73,16 @@ const StyledParagraph = styled(Paragraph)`
   line-height: 27px;
 `;
 
-function formatDate(data) {
-  const dob = new Date(data);
-
-  const monthNames = ['STY', 'LUT', 'MAR', 'KWI', 'MAJ', 'CZE', 'LIP', 'SIE', 'WRZ', 'PAŹ', 'LIS', 'GRU'];
-
-  const day = dob.getDate();
-  const monthIndex = dob.getMonth();
-  const year = dob.getFullYear();
-  return [year, monthNames[monthIndex], day];
-}
-
 const NewsItem = ({ data, tytul, tekst }) => {
-  console.log(formatDate(data));
-  const daty = formatDate(data);
-  const year = daty[0];
-  const monthName = daty[1];
-  const day = daty[2];
+  const date = formatDataTest(data);
 
   return (
     <Wrapper onClick={() => console.log('Clicked')}>
       <LogoImage src={logo} />
       <Bottom>
         <Datee>
-          <StyledParagraph>{`${day} ${monthName}`}</StyledParagraph>
-          <StyledParagraph>{year}</StyledParagraph>
+          <StyledParagraph>{`${date[2]} ${date[1]}`}</StyledParagraph>
+          <StyledParagraph>{date[0]}</StyledParagraph>
         </Datee>
         <Content>
           <Title>{tytul}</Title>
