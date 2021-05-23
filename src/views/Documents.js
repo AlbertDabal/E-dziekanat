@@ -19,19 +19,22 @@ const Mininavi = styled.div`
   justify-content: space-around;
   width: 100%;
   border-bottom: 1px solid #dfe0eb;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 35px 15px 5px 15px;
+  color: #9fa2b4;
 `;
 const Bar1 = styled.div`
   display: flex;
-
-  width: 35%;
+  width: 560px;
 `;
 const Bar2 = styled.div`
   display: flex;
+  width: 180px;
 `;
 
 const Bar3 = styled.div`
   display: flex;
-  width: 1vh;
 `;
 
 const Documents = () => {
@@ -53,10 +56,10 @@ const Documents = () => {
         <Wrapper>
           <Mininavi>
             <Bar1> Nazwa </Bar1>
-            <Bar2> Data_modyfikacji_pliku </Bar2>
-            <Bar2> Data_wrzuceniu_pliku </Bar2>
+            <Bar2> Data modyfikacji pliku </Bar2>
+            <Bar2> Data wrzuceniu pliku </Bar2>
             <Bar2> Przesylajacy </Bar2>
-            <Bar3> abc </Bar3>
+            <Bar3> </Bar3>
           </Mininavi>
           {dataDocuments.map((documents, index) => (
             <DocumentsItem

@@ -10,6 +10,7 @@ const Wrapper = styled.div`
   justify-content: space-around;
   align-items: center;
   border-bottom: 1px solid #dfe0eb;
+  padding: 15px 0px 15px 0px;
 `;
 
 const NazwaDokumentu = styled.div`
@@ -21,12 +22,14 @@ const DataMod = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
+  align-items: center;
 `;
 
 const DataUp = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
+  align-items: center;
 `;
 
 const Owner = styled.div`
@@ -35,12 +38,14 @@ const Owner = styled.div`
 
 const Download = styled.div`
   display: flex;
-  width: 1vh;
 `;
 
 const Przeniesienie = styled.a``;
 
-const StyledParagraph = styled(Paragraph)``;
+const StyledParagraph = styled(Paragraph)`
+  font-size: 14px;
+  line-height: 17px;
+`;
 
 function formatDatamody(Datamody) {
   const dob = new Date(Datamody);
@@ -50,7 +55,9 @@ function formatDatamody(Datamody) {
   const day = dob.getDate();
   const monthIndex = dob.getMonth();
   const year = dob.getFullYear();
-  return [year, monthNames[monthIndex], day];
+  const hour = dob.getHours();
+  const minutes = dob.getMinutes();
+  return [year, monthNames[monthIndex], day, hour, minutes];
 }
 
 function formatDataupl(Dataupl) {
@@ -61,7 +68,9 @@ function formatDataupl(Dataupl) {
   const day = dob.getDate();
   const monthIndex = dob.getMonth();
   const year = dob.getFullYear();
-  return [year, monthNames[monthIndex], day];
+  const hour = dob.getHours();
+  const minutes = dob.getMinutes();
+  return [year, monthNames[monthIndex], day, hour, minutes];
 }
 
 const DocumentsItem = ({ Nazwa, Datamody, Dataupl, Przesylajacy, Downloader }) => {
@@ -70,11 +79,15 @@ const DocumentsItem = ({ Nazwa, Datamody, Dataupl, Przesylajacy, Downloader }) =
   const year = daty[0];
   const monthName = daty[1];
   const day = daty[2];
+  const hour = daty[3];
+  const minutes = daty[4];
 
   const datyy = formatDataupl(Dataupl);
   const yearr = datyy[0];
   const monthNamee = datyy[1];
   const dayy = datyy[2];
+  const hourr = datyy[3];
+  const minutess = datyy[4];
 
   async function DownloadItem() {
     const res = await DownloadDocuments();
@@ -83,16 +96,20 @@ const DocumentsItem = ({ Nazwa, Datamody, Dataupl, Przesylajacy, Downloader }) =
 
   return (
     <Wrapper onClick={() => console.log('Clicked')}>
-      <NazwaDokumentu>{Nazwa}</NazwaDokumentu>
+      <NazwaDokumentu>
+        <Paragraph>{Nazwa}</Paragraph>
+      </NazwaDokumentu>
       <DataMod>
         <StyledParagraph>{`${day} ${monthName} ${year}`}</StyledParagraph>
-        <StyledParagraph>{`${day} ${monthName} ${year}`}</StyledParagraph>
+        <StyledParagraph>{`${hour}:${minutes}`}</StyledParagraph>
       </DataMod>
       <DataUp>
         <StyledParagraph>{`${dayy} ${monthNamee} ${yearr}`}</StyledParagraph>
-        <StyledParagraph>{`${dayy} ${monthNamee} ${yearr}`}</StyledParagraph>
+        <StyledParagraph>{`${hourr}:${minutess}`}</StyledParagraph>
       </DataUp>
-      <Owner>{Przesylajacy}</Owner>
+      <Owner>
+        <Paragraph>{Przesylajacy}</Paragraph>
+      </Owner>
       <Download>
         <Przeniesienie onClick={() => DownloadItem()}>a</Przeniesienie>
       </Download>
