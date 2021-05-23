@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
 import { DownloadDocuments } from 'api/FetchDocuments';
+import { formatDataTest } from 'function/FormatDatePl';
 
 const Wrapper = styled.div`
   display: flex;
@@ -47,47 +48,9 @@ const StyledParagraph = styled(Paragraph)`
   line-height: 17px;
 `;
 
-function formatDatamody(Datamody) {
-  const dob = new Date(Datamody);
-
-  const monthNames = ['STY', 'LUT', 'MAR', 'KWI', 'MAJ', 'CZE', 'LIP', 'SIE', 'WRZ', 'PAŹ', 'LIS', 'GRU'];
-
-  const day = dob.getDate();
-  const monthIndex = dob.getMonth();
-  const year = dob.getFullYear();
-  const hour = dob.getHours();
-  const minutes = dob.getMinutes();
-  return [year, monthNames[monthIndex], day, hour, minutes];
-}
-
-function formatDataupl(Dataupl) {
-  const dob = new Date(Dataupl);
-
-  const monthNames = ['STY', 'LUT', 'MAR', 'KWI', 'MAJ', 'CZE', 'LIP', 'SIE', 'WRZ', 'PAŹ', 'LIS', 'GRU'];
-
-  const day = dob.getDate();
-  const monthIndex = dob.getMonth();
-  const year = dob.getFullYear();
-  const hour = dob.getHours();
-  const minutes = dob.getMinutes();
-  return [year, monthNames[monthIndex], day, hour, minutes];
-}
-
 const DocumentsItem = ({ Nazwa, Datamody, Dataupl, Przesylajacy, Downloader }) => {
-  console.log(formatDatamody);
-  const daty = formatDatamody(Datamody);
-  const year = daty[0];
-  const monthName = daty[1];
-  const day = daty[2];
-  const hour = daty[3];
-  const minutes = daty[4];
-
-  const datyy = formatDataupl(Dataupl);
-  const yearr = datyy[0];
-  const monthNamee = datyy[1];
-  const dayy = datyy[2];
-  const hourr = datyy[3];
-  const minutess = datyy[4];
+  const daty = formatDataTest(Datamody);
+  const datyy = formatDataTest(Dataupl);
 
   async function DownloadItem() {
     const res = await DownloadDocuments();
@@ -100,12 +63,12 @@ const DocumentsItem = ({ Nazwa, Datamody, Dataupl, Przesylajacy, Downloader }) =
         <Paragraph>{Nazwa}</Paragraph>
       </NazwaDokumentu>
       <DataMod>
-        <StyledParagraph>{`${day} ${monthName} ${year}`}</StyledParagraph>
-        <StyledParagraph>{`${hour}:${minutes}`}</StyledParagraph>
+        <StyledParagraph>{`${daty[2]} ${daty[1]} ${daty[0]}`}</StyledParagraph>
+        <StyledParagraph>{`${daty[3]}:${daty[4]}`}</StyledParagraph>
       </DataMod>
       <DataUp>
-        <StyledParagraph>{`${dayy} ${monthNamee} ${yearr}`}</StyledParagraph>
-        <StyledParagraph>{`${hourr}:${minutess}`}</StyledParagraph>
+        <StyledParagraph>{`${datyy[2]} ${datyy[1]} ${datyy[0]}`}</StyledParagraph>
+        <StyledParagraph>{`${datyy[3]}:${datyy[4]}`}</StyledParagraph>
       </DataUp>
       <Owner>
         <Paragraph>{Przesylajacy}</Paragraph>
