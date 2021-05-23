@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
 import { DownloadDocuments } from 'api/FetchDocuments';
 import { formatDataTest } from 'function/FormatDatePl';
+import { AiOutlineDownload } from 'react-icons/ai';
 
 const Wrapper = styled.div`
   display: flex;
@@ -11,16 +12,18 @@ const Wrapper = styled.div`
   justify-content: space-around;
   align-items: center;
   border-bottom: 1px solid #dfe0eb;
-  padding: 15px 0px 15px 0px;
+  padding: 15px 0px;
 `;
 
 const NazwaDokumentu = styled.div`
   display: flex;
-  width: 35%;
+  width: 30%;
+  justify-content: center;
 `;
 
 const DataMod = styled.div`
   display: flex;
+  width: 20%;
   justify-content: center;
   flex-direction: column;
   align-items: center;
@@ -31,17 +34,35 @@ const DataUp = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  width: 20%;
 `;
 
 const Owner = styled.div`
   display: flex;
+  justify-content: center;
+  width: 20%;
 `;
 
 const Download = styled.div`
-  display: flex;
+  width: 10%;
+  align-items: center;
+
+  > svg {
+    font-size: 26px;
+    padding-bottom: 2px;
+    margin: 0 20px;
+    cursor: pointer;
+  }
+
+  > span {
+    font-weight: 100;
+  }
 `;
 
-const Przeniesienie = styled.a``;
+const Przeniesienie = styled.a`
+  width: 100%;
+  background-color: red;
+`;
 
 const StyledParagraph = styled(Paragraph)`
   font-size: 14px;
@@ -74,7 +95,7 @@ const DocumentsItem = ({ Nazwa, Datamody, Dataupl, Przesylajacy, Downloader }) =
         <Paragraph>{Przesylajacy}</Paragraph>
       </Owner>
       <Download>
-        <Przeniesienie onClick={() => DownloadItem()}>a</Przeniesienie>
+        <AiOutlineDownload onClick={() => DownloadItem} />
       </Download>
     </Wrapper>
   );
