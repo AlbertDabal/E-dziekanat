@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
+import { DownloadDocuments } from 'api/FetchDocuments';
 
 const Wrapper = styled.div`
   display: flex;
@@ -75,6 +76,11 @@ const DocumentsItem = ({ Nazwa, Datamody, Dataupl, Przesylajacy, Downloader }) =
   const monthNamee = datyy[1];
   const dayy = datyy[2];
 
+  async function DownloadItem() {
+    const res = await DownloadDocuments();
+    console.log(res);
+  }
+
   return (
     <Wrapper onClick={() => console.log('Clicked')}>
       <NazwaDokumentu>{Nazwa}</NazwaDokumentu>
@@ -88,7 +94,7 @@ const DocumentsItem = ({ Nazwa, Datamody, Dataupl, Przesylajacy, Downloader }) =
       </DataUp>
       <Owner>{Przesylajacy}</Owner>
       <Download>
-        <Przeniesienie href={Downloader}>a</Przeniesienie>
+        <Przeniesienie onClick={() => DownloadItem()}>a</Przeniesienie>
       </Download>
     </Wrapper>
   );
