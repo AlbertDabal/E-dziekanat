@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { SetNews } from 'api/FetchNews';
 import NewsItem from 'components/organism/News/NewsItem';
 import DashboardTemplate from 'templates/DashboardTemplate';
+import NewsBig from './NewsBig';
 
 const Wrapper = styled.div`
   display: grid;
@@ -11,7 +12,7 @@ const Wrapper = styled.div`
   grid-template-columns: 50% 50%;
 `;
 
-const ButtonNews = styled(Link)`
+const ButtonNews = styled.a`
   text-decoration: none;
   color: black;
   margin: 10px;
@@ -30,13 +31,22 @@ const News = () => {
     setDataNews(res.data.TopListAktualnosciPowiadomien);
   }
 
+  const [open, setOpen] = useState(false);
+  const [id, setId] = useState(0);
+
+  const IsOpen = (index) => {
+    setOpen(!open);
+    setId(index);
+  };
+
   return (
     <DashboardTemplate>
       {dataNews !== null ? (
         <Wrapper>
+          {open && <NewsBig IsOpen={IsOpen} data={dataNews[id]} />}
           {dataNews.map((news, index) => (
-            <ButtonNews to={`/news/${index}`}>
-              <NewsItem data={news.Data_wystawienia} tytul={news.Tytul} tekst={news.Tresc} /* logo={news.Zdjecie} */ />
+            <ButtonNews onClick={() => IsOpen(index)}>
+              <NewsItem data={news.Data_wystawienia} tytul={news.Tytul} tekst={news.Tresc} />
             </ButtonNews>
           ))}
         </Wrapper>
