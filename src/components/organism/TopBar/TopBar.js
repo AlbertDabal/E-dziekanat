@@ -57,16 +57,16 @@ const WrapperRight = styled.div`
   }
 `;
 
-const TopBar = ({ news }) => {
+const TopBar = ({ pools }) => {
   const location = useLocation().pathname;
   const pathName = NavigationMainData.filter((item) => item.path === location);
 
   return (
     <Wrapper>
       <WrapperLeft>
-        <SvgContainer>{news ? NavigationMainData[5].icon : pathName[0].icon}</SvgContainer>
+        <SvgContainer>{pathName.length !== 0 ? pathName[0].icon : NavigationMainData[7].icon}</SvgContainer>
 
-        <HeadingStyled big>{news ? NavigationMainData[5].title : pathName[0].title}</HeadingStyled>
+        <HeadingStyled big>{pathName.length !== 0 ? pathName[0].title : NavigationMainData[7].title}</HeadingStyled>
       </WrapperLeft>
       <WrapperRight>
         <AiIcons.AiFillMessage />
@@ -78,7 +78,7 @@ const TopBar = ({ news }) => {
 };
 
 TopBar.propTypes = {
-  news: PropTypes.element.isRequired,
+  pools: PropTypes.element.isRequired,
 };
 
 export default TopBar;

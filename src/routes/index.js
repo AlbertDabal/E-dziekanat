@@ -8,5 +8,7 @@ export const routes = {
   news: '/news',
   newsbig: '/news/:id',
   documents: '/documents',
+  polls: '/pools',
+  pollsId: '/pools/:id',
   test: '/test',
 };

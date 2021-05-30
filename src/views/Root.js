@@ -15,6 +15,8 @@ import NewsBig from 'views/NewsBig';
 import Documents from 'views/Documents';
 import Wellcome from 'views/Wellcome';
 import { routes } from 'routes';
+import Polls from './Polls';
+import PoolDetails from './PoolDetails';
 
 const Root = () => (
   <ThemeProvider theme={theme}>
@@ -34,11 +36,14 @@ const Root = () => (
         <PrivateRoute exact path={routes.news}>
           <News />
         </PrivateRoute>
-        <PrivateRoute exact path={routes.newsbig}>
-          <NewsBig />
-        </PrivateRoute>
         <PrivateRoute exact path={routes.documents}>
           <Documents />
+        </PrivateRoute>
+        <PrivateRoute exact path={routes.polls}>
+          <Polls />
+        </PrivateRoute>
+        <PrivateRoute exact path={routes.pollsId}>
+          <PoolDetails />
         </PrivateRoute>
         <Route exact path={routes.test} component={MainTemplate} />
       </Switch>

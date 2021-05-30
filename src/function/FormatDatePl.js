@@ -6,8 +6,5 @@ export function formatDataTest(data) {
   const day = dob.getDate();
   const monthIndex = dob.getMonth();
   const year = dob.getFullYear();
-  const hour = dob.getHours();
-  const minutes = dob.getMinutes();
-  console.log([year, monthNames[monthIndex], day]);
-  return [year, monthNames[monthIndex], day, hour, minutes];
+  return [year, monthNames[monthIndex], day];
 }

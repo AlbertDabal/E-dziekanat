@@ -56,6 +56,13 @@ const NavigationMainData = [
     cName: 'nav-text,',
     id: nanoid(),
   },
+  {
+    title: 'Ankiety',
+    path: routes.polls,
+    icon: <FaIcons.FaBalanceScaleLeft />,
+    cName: 'nav-text,',
+    id: nanoid(),
+  },
 ];
 
 export default NavigationMainData;
