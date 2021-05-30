@@ -95,7 +95,6 @@ function formatDataupl(Dataupl) {
 }
 
 const DocumentsItem = ({ Nazwa, Datamody, Dataupl, Przesylajacy, Downloader }) => {
-  console.log(formatDatamody);
   const daty = formatDatamody(Datamody);
   const year = daty[0];
   const monthName = daty[1];
@@ -112,7 +111,6 @@ const DocumentsItem = ({ Nazwa, Datamody, Dataupl, Przesylajacy, Downloader }) =
 
   async function DownloadItem() {
     const res = await DownloadDocuments();
-    console.log(res);
   }
 
   return (
@@ -132,7 +130,8 @@ const DocumentsItem = ({ Nazwa, Datamody, Dataupl, Przesylajacy, Downloader }) =
         <Paragraph>{Przesylajacy}</Paragraph>
       </Owner>
       <Download>
-        <AiOutlineDownload onClick={() => DownloadItem} />
+        <AiOutlineDownload onClick={() => DownloadItem()} />
+        <a href="http://178.43.196.47/api/dokumenty/pobierz2">TEST</a>
       </Download>
     </Wrapper>
   );

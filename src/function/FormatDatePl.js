@@ -6,6 +6,5 @@ export function formatDataTest(data) {
   const day = dob.getDate();
   const monthIndex = dob.getMonth();
   const year = dob.getFullYear();
-  console.log([year, monthNames[monthIndex], day]);
   return [year, monthNames[monthIndex], day];
 }

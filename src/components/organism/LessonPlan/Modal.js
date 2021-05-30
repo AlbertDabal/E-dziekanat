@@ -119,18 +119,16 @@ const Modal = ({ IsOpen, data }) => (
       </Top>
       <HeadingStyled>{`${data.Nazwa}`}</HeadingStyled>
       <HeadingStyled>{`${data.ImieWykladowcy} ${data.NazwiskoWykladowcy}`}</HeadingStyled>
-      {/* <HeadingStyled>{`Link do kursu ${data.LinkDoKursu}`}</HeadingStyled>
-      <HeadingStyled>{`Dodatkowe Materiały ${data.DodatkoweMaterialy}`}</HeadingStyled> */}
       <HeadingStyled>{`Ilość godzin ${data.IloscGodzin}`}</HeadingStyled>
       <HeadingStyled>{`Ects ${data.Ects}`}</HeadingStyled>
       <Bottom>
         <Link typeLesson={data.Typ} onClick={() => IsOpen()}>
           powrót
         </Link>
-        <Link typeLesson={data.Typ} onClick={() => IsOpen()}>
+        <Link typeLesson={data.Typ} href={data.DodatkoweMaterialy} target="_blank">
           dodatkowe materiały
         </Link>
-        <Link typeLesson={data.Typ} onClick={() => IsOpen()}>
+        <Link typeLesson={data.Typ} href={data.LinkDoKursu} target="_blank">
           link do kursu
         </Link>
       </Bottom>
