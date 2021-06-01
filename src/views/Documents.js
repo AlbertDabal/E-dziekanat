@@ -50,6 +50,7 @@ const Documents = () => {
     console.log(res.data.TopListDokumentow);
     setDataDocuments(res.data.TopListDokumentow);
   }
+  console.log(dataDocuments);
 
   return (
     <DashboardTemplate>
@@ -68,7 +69,7 @@ const Documents = () => {
               Datamody={documents.Data_modyfikacji_pliku}
               Dataupl={documents.Data_wrzuceniu_pliku}
               Przesylajacy={documents.Przesylajacy}
-              Downloader={`${process.env.REACT_APP_ADDRESS}dokumenty/pobierz/${index}`}
+              Downloader={documents.Plik_path}
             />
           ))}
         </Wrapper>
