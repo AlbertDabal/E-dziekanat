@@ -47,14 +47,14 @@ const Download = styled.div`
   width: 10%;
   align-items: center;
 
-  > svg {
+  a > svg {
     font-size: 26px;
     padding-bottom: 2px;
     margin: 0 20px;
     cursor: pointer;
   }
 
-  > span {
+  a > span {
     font-weight: 100;
   }
 `;
@@ -94,8 +94,9 @@ const DocumentsItem = ({ Nazwa, Datamody, Dataupl, Przesylajacy, Downloader }) =
         <Paragraph>{Przesylajacy}</Paragraph>
       </Owner>
       <Download>
-        <AiOutlineDownload onClick={() => DownloadItem()} />
-        <a href="http://178.43.196.47/api/dokumenty/pobierz2">TEST</a>
+        <a href={Downloader}>
+          <AiOutlineDownload onClick={() => DownloadItem()} />
+        </a>
       </Download>
     </Wrapper>
   );
