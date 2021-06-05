@@ -7,6 +7,8 @@ import styled from 'styled-components';
 import Heading from 'components/atoms/Heading/Heading';
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
 import Button from 'components/atoms/Button/Button';
+import Input from 'components/atoms/Input/Input';
+import PoolModal from 'components/organism/Pool/PoolModal';
 
 const Container = styled.div`
   display: flex;
@@ -33,6 +35,7 @@ const StyledInput = styled.input`
 const StyledButton = styled(Button)`
   margin-top: 20px;
   margin-bottom: 30px;
+  margin-right: 30px;
 `;
 
 const LinkStyled = styled(Paragraph)`
@@ -47,10 +50,14 @@ const PoolDetails = ({ match }) => {
   const [choose, setChoose] = useState(null);
   const [errorSubmit, setErrorSubmit] = useState(null);
   const history = useHistory();
+  const [openModal, setOpenModal] = useState(false);
+  const [newAnswer, SetNewAnswer] = useState(false);
+  const [update, setUpdate] = useState(false);
+  const [valueDefult, setValueDefault] = useState(null);
 
   useEffect(() => {
     FetchDetails();
-  }, []);
+  }, [update]);
 
   async function FetchDetails() {
     const id = state.pathname.replace('/pools/', '');
@@ -73,40 +80,71 @@ const PoolDetails = ({ match }) => {
     }
   }
 
+  const IsOpen = () => {
+    setOpenModal(!openModal);
+  };
+
   return (
     <DashboardTemplate>
       {data !== null ? (
         <Container>
-          <form onSubmit={Wyslij}>
-            <Heading>{data.Tresc}</Heading>
+          {data.IdWyboru === 0 ? (
+            <form onSubmit={Wyslij}>
+              <Heading>{data.Tresc}</Heading>
+              <Paragraph>{`Twórca ${data.ImieNazwisko}`}</Paragraph>
+              {data.wybory.map((item) => (
+                <Wrapper>
+                  <StyledInput
+                    type="radio"
+                    name="test"
+                    value={item.IdWyboru}
+                    onChange={(e) => setChoose(e.target.value)}
+                  />
+                  <Paragraph>{item.Tresc}</Paragraph>
+                </Wrapper>
+              ))}
 
-            <Paragraph>Twórca: Janusz Kowalski</Paragraph>
+              {errorSubmit && (
+                <>
+                  <LinkStyled style={{ color: 'red' }}>{errorSubmit}</LinkStyled>
+                  <br />
+                </>
+              )}
+              {newAnswer && (
+                <>
+                  <LinkStyled style={{ color: 'red' }}>Ta ankieta nie zezwala na własne odpowiedzi</LinkStyled>
+                  <br />
+                </>
+              )}
+              <br />
+              <StyledButton type="submit" style={{ height: '50px' }}>
+                WYSLIJ
+              </StyledButton>
+              <StyledButton onClick={() => IsOpen()} type="button" typeButton="edytuj" style={{ height: '50px' }}>
+                DODAJ ODPOWIEDZ
+              </StyledButton>
+            </form>
+          ) : (
+            <>
+              <Heading>{data.Tresc}</Heading>
+              <Paragraph>{`Twórca ${data.ImieNazwisko}`}</Paragraph>
 
-            {data.wybory.map((item) => (
-              <Wrapper>
-                <StyledInput
-                  type="radio"
-                  name="test"
-                  value={item.IdWyboru}
-                  onChange={(e) => setChoose(e.target.value)}
-                />
-                <Paragraph>{item.Tresc}</Paragraph>
-              </Wrapper>
-            ))}
-
-            {errorSubmit && (
-              <>
-                <LinkStyled style={{ color: 'red' }}>{errorSubmit}</LinkStyled>
-                <br />
-              </>
-            )}
-            <br />
-            <StyledButton type="submit" style={{ height: '50px' }}>
-              WYSLIJ
-            </StyledButton>
-          </form>
+              <Heading>{valueDefult}</Heading>
+              <StyledButton type="button" typeButton="edytuj" style={{ height: '50px' }}>
+                EDYTUJ
+              </StyledButton>
+            </>
+          )}
         </Container>
       ) : null}
+      {openModal && (
+        <PoolModal
+          IsOpen={IsOpen}
+          SetNewAnswer={SetNewAnswer}
+          setUpdate={setUpdate}
+          id={state.pathname.replace('/pools/', '')}
+        />
+      )}
     </DashboardTemplate>
   );
 };
