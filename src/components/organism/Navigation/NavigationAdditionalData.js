@@ -14,7 +14,7 @@ const NavigationAdditionalData = [
   },
   {
     title: 'Ustawienia',
-    path: routes.lessonPlan,
+    path: routes.settings,
     icon: <GoIcons.GoGear />,
     cName: 'nav-text,',
     id: nanoid(),

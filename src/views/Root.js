@@ -14,6 +14,7 @@ import News from 'views/News';
 import NewsBig from 'views/NewsBig';
 import Documents from 'views/Documents';
 import Wellcome from 'views/Wellcome';
+import Settings from 'views/Settings';
 import { routes } from 'routes';
 import Polls from './Polls';
 import PoolDetails from './PoolDetails';
@@ -44,6 +45,9 @@ const Root = () => (
         </PrivateRoute>
         <PrivateRoute exact path={routes.pollsId}>
           <PoolDetails />
+        </PrivateRoute>
+        <PrivateRoute exact path={routes.settings}>
+          <Settings />
         </PrivateRoute>
         <Route exact path={routes.test} component={MainTemplate} />
       </Switch>
