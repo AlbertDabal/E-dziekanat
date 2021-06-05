@@ -125,15 +125,42 @@ const PoolDetails = ({ match }) => {
               </StyledButton>
             </form>
           ) : (
-            <>
+            <form onSubmit={Wyslij}>
               <Heading>{data.Tresc}</Heading>
               <Paragraph>{`Twórca ${data.ImieNazwisko}`}</Paragraph>
+              {data.wybory.map((item) => (
+                <Wrapper>
+                  <StyledInput
+                    type="radio"
+                    name="test"
+                    value={item.IdWyboru}
+                    onChange={(e) => setChoose(e.target.value)}
+                    defaultChecked={item.IdWyboru === data.IdWyboru}
+                  />
+                  <Paragraph>{item.Tresc}</Paragraph>
+                </Wrapper>
+              ))}
 
-              <Heading>{valueDefult}</Heading>
-              <StyledButton type="button" typeButton="edytuj" style={{ height: '50px' }}>
-                EDYTUJ
+              {errorSubmit && (
+                <>
+                  <LinkStyled style={{ color: 'red' }}>{errorSubmit}</LinkStyled>
+                  <br />
+                </>
+              )}
+              {newAnswer && (
+                <>
+                  <LinkStyled style={{ color: 'red' }}>Ta ankieta nie zezwala na własne odpowiedzi</LinkStyled>
+                  <br />
+                </>
+              )}
+              <br />
+              <StyledButton type="submit" style={{ height: '50px' }}>
+                ZMIEN ODPOWIEDZ
               </StyledButton>
-            </>
+              <StyledButton onClick={() => IsOpen()} type="button" typeButton="edytuj" style={{ height: '50px' }}>
+                DODAJ ODPOWIEDZ
+              </StyledButton>
+            </form>
           )}
         </Container>
       ) : null}
