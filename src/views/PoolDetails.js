@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import DashboardTemplate from 'templates/DashboardTemplate';
 import PropTypes from 'prop-types';
-import { useLocation, Link } from 'react-router-dom';
-import { SetPoolsDetails } from 'api/FetchPolls';
+import { useLocation, Link, useHistory } from 'react-router-dom';
+import { PoolsSubmit, SetPoolsDetails } from 'api/FetchPolls';
 import styled from 'styled-components';
 import Heading from 'components/atoms/Heading/Heading';
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
@@ -35,9 +35,18 @@ const StyledButton = styled(Button)`
   margin-bottom: 30px;
 `;
 
+const LinkStyled = styled(Paragraph)`
+  margin-top: 20px;
+  font-weight: 400;
+  cursor: pointer;
+`;
+
 const PoolDetails = ({ match }) => {
   const state = useLocation();
   const [data, setData] = useState(null);
+  const [choose, setChoose] = useState(null);
+  const [errorSubmit, setErrorSubmit] = useState(null);
+  const history = useHistory();
 
   useEffect(() => {
     FetchDetails();
@@ -51,25 +60,51 @@ const PoolDetails = ({ match }) => {
     } catch (err) {
       console.log(err);
     }
-    console.log(res.data);
+  }
+
+  async function Wyslij(e) {
+    e.preventDefault();
+    const id = state.pathname.replace('/pools/', '');
+    const res = await PoolsSubmit(id, choose);
+    if (res.data !== true) {
+      setErrorSubmit('*Nie udało się odpowiedziec w ankiecie');
+    } else {
+      history.push('/pools');
+    }
   }
 
   return (
     <DashboardTemplate>
       {data !== null ? (
         <Container>
-          <Heading>{data.Tresc}</Heading>
+          <form onSubmit={Wyslij}>
+            <Heading>{data.Tresc}</Heading>
 
-          <Paragraph>Twórca: Janusz Kowalski</Paragraph>
+            <Paragraph>Twórca: Janusz Kowalski</Paragraph>
 
-          {data.wybory.map((item) => (
-            <Wrapper>
-              <StyledInput type="radio" name="test" value="value2" />
-              <Paragraph>{item.Tresc}</Paragraph>
-            </Wrapper>
-          ))}
+            {data.wybory.map((item) => (
+              <Wrapper>
+                <StyledInput
+                  type="radio"
+                  name="test"
+                  value={item.IdWyboru}
+                  onChange={(e) => setChoose(e.target.value)}
+                />
+                <Paragraph>{item.Tresc}</Paragraph>
+              </Wrapper>
+            ))}
 
-          <StyledButton style={{ height: '50px' }}>WYSLIJ</StyledButton>
+            {errorSubmit && (
+              <>
+                <LinkStyled style={{ color: 'red' }}>{errorSubmit}</LinkStyled>
+                <br />
+              </>
+            )}
+            <br />
+            <StyledButton type="submit" style={{ height: '50px' }}>
+              WYSLIJ
+            </StyledButton>
+          </form>
         </Container>
       ) : null}
     </DashboardTemplate>
