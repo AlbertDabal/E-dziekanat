@@ -12,4 +12,5 @@ export const routes = {
   pollsId: '/pools/:id',
   settings: '/settings',
   test: '/test',
+  theme: '/theme',
 };

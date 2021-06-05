@@ -7,7 +7,7 @@ import { nanoid } from 'nanoid';
 const NavigationAdditionalData = [
   {
     title: 'Motyw',
-    path: routes.dashboard,
+    path: routes.theme,
     icon: <CgIcons.CgDarkMode />,
     cName: 'nav-text,',
     id: nanoid(),

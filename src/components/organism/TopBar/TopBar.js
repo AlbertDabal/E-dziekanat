@@ -1,5 +1,5 @@
 import Heading from 'components/atoms/Heading/Heading';
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import NavigationMainData from 'data/NavigationMainData';
 import NavigationAdditionalData from 'components/organism/Navigation/NavigationAdditionalData';
@@ -7,6 +7,7 @@ import { useLocation } from 'react-router-dom';
 import * as AiIcons from 'react-icons/ai';
 import * as FaIcons from 'react-icons/fa';
 import PropTypes from 'prop-types';
+import { routes } from 'routes';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -60,7 +61,14 @@ const WrapperRight = styled.div`
 
 const TopBar = ({ pools }) => {
   const location = useLocation().pathname;
-  const pathName = NavigationMainData.filter((item) => item.path === location);
+  let pathName;
+  if (location === routes.settings || location === routes.theme) {
+    pathName = NavigationAdditionalData.filter((item) => item.path === location);
+  } else {
+    pathName = NavigationMainData.filter((item) => item.path === location);
+  }
+
+  console.log(pathName);
 
   return (
     <Wrapper>
