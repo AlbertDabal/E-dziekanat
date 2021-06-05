@@ -10,5 +10,6 @@ export const routes = {
   documents: '/documents',
   polls: '/pools',
   pollsId: '/pools/:id',
+  settings: '/settings',
   test: '/test',
 };

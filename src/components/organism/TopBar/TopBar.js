@@ -2,6 +2,7 @@ import Heading from 'components/atoms/Heading/Heading';
 import React from 'react';
 import styled from 'styled-components';
 import NavigationMainData from 'data/NavigationMainData';
+import NavigationAdditionalData from 'components/organism/Navigation/NavigationAdditionalData';
 import { useLocation } from 'react-router-dom';
 import * as AiIcons from 'react-icons/ai';
 import * as FaIcons from 'react-icons/fa';

@@ -11,6 +11,7 @@ const Wrapper = styled.div`
   height: 100%;
   border-radius: 30px;
   border: 1px solid #cbcbcd;
+  background-color: #ffffff;
 `;
 const Mininavi = styled.div`
   display: flex;
