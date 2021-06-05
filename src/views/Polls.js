@@ -66,7 +66,7 @@ const Polls = () => {
                 autor={item.ImieNazwisko}
                 key={item.IdAnkiety}
                 id={item.IdAnkiety}
-                wybory={item.wybory}
+                wybor={item.IdWyboru}
               />
             ))}
           </Wrapper>

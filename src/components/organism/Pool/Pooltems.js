@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Button from 'components/atoms/Button/Button';
 import { Link } from 'react-router-dom';
+import { FaTachometerAlt } from 'react-icons/fa';
 
 const Wrapper = styled.div`
   display: flex;
@@ -21,7 +22,7 @@ const StyledLink = styled(Link)`
   width: 230px;
   border-radius: 30px;
   color: white;
-  background-color: ${({ theme }) => theme.alertColorSucces};
+  background-color: ${({ theme, select }) => (select ? theme.thameColor : theme.alertColorSucces)};
   font-family: Poppins;
   font-size: 20px;
   font-style: normal;
@@ -37,17 +38,18 @@ const StyledLink = styled(Link)`
   justify-content: center;
 `;
 
-const Pooltems = ({ tresc, data, autor, key, wybory, id }) => (
+const Pooltems = ({ tresc, data, autor, id, wybor }) => (
   <Wrapper>
     <Paragraph style={{ width: '10%' }}>{data.substr(0, 10)}</Paragraph>
     <Paragraph style={{ width: '32%' }}>{tresc}</Paragraph>
     <Paragraph style={{ width: '22%' }}>{autor}</Paragraph>
-    {wybory === null ? (
+    {console.log(wybor)}
+    {wybor === 0 ? (
       <StyledLink to={`/pools/${id}`} style={{ width: '10%' }}>
         WYPEŁNIJ
       </StyledLink>
     ) : (
-      <StyledLink to={`/pools/${id}`} style={{ width: '10%' }}>
+      <StyledLink select to={`/pools/${id}`} style={{ width: '10%' }}>
         PODGLĄD
       </StyledLink>
     )}
@@ -58,9 +60,8 @@ Pooltems.propTypes = {
   tresc: PropTypes.element.isRequired,
   data: PropTypes.element.isRequired,
   autor: PropTypes.element.isRequired,
-  key: PropTypes.element.isRequired,
-  wybory: PropTypes.element.isRequired,
   id: PropTypes.element.isRequired,
+  wybor: PropTypes.string.isRequired,
 };
 
 export default Pooltems;

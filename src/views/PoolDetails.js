@@ -44,6 +44,23 @@ const LinkStyled = styled(Paragraph)`
   cursor: pointer;
 `;
 
+const StyledLink = styled(Link)`
+  height: 50px;
+  border-radius: 30px;
+  color: white;
+  background-color: ${({ theme, select }) => (select ? theme.thameColor : theme.alertColorSucces)};
+  font-family: Poppins;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  text-align: center;
+  border: 2px solid transparent;
+  text-decoration: none;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+`;
+
 const PoolDetails = ({ match }) => {
   const state = useLocation();
   const [data, setData] = useState(null);
@@ -53,7 +70,6 @@ const PoolDetails = ({ match }) => {
   const [openModal, setOpenModal] = useState(false);
   const [newAnswer, SetNewAnswer] = useState(false);
   const [update, setUpdate] = useState(false);
-  const [valueDefult, setValueDefault] = useState(null);
 
   useEffect(() => {
     FetchDetails();
@@ -117,12 +133,16 @@ const PoolDetails = ({ match }) => {
                 </>
               )}
               <br />
+
               <StyledButton type="submit" style={{ height: '50px' }}>
                 WYSLIJ
               </StyledButton>
               <StyledButton onClick={() => IsOpen()} type="button" typeButton="edytuj" style={{ height: '50px' }}>
                 DODAJ ODPOWIEDZ
               </StyledButton>
+              <StyledLink select to="/pools" style={{ width: '10%' }}>
+                POWROT
+              </StyledLink>
             </form>
           ) : (
             <form onSubmit={Wyslij}>
@@ -154,12 +174,16 @@ const PoolDetails = ({ match }) => {
                 </>
               )}
               <br />
+
               <StyledButton type="submit" style={{ height: '50px' }}>
                 ZMIEN ODPOWIEDZ
               </StyledButton>
               <StyledButton onClick={() => IsOpen()} type="button" typeButton="edytuj" style={{ height: '50px' }}>
                 DODAJ ODPOWIEDZ
               </StyledButton>
+              <StyledLink select to="/pools" style={{ width: '10%' }}>
+                POWROT
+              </StyledLink>
             </form>
           )}
         </Container>
