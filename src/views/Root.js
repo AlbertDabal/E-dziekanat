@@ -49,6 +49,9 @@ const Root = () => (
         <PrivateRoute exact path={routes.settings}>
           <Settings />
         </PrivateRoute>
+        <PrivateRoute exact path={routes.theme}>
+          <Settings />
+        </PrivateRoute>
         <Route exact path={routes.test} component={MainTemplate} />
       </Switch>
     </Router>
