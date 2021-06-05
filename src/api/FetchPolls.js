@@ -32,3 +32,21 @@ export const SetPoolsDetails = async (id) => {
 
   return res;
 };
+
+export const PoolsSubmit = async (id, choose) => {
+  const idUzytkownika = sessionStorage.getItem('Id_uzytkownika');
+  const kodRoli = sessionStorage.getItem('Kod_roli');
+
+  const res = await axios
+    .post(`${process.env.REACT_APP_ADDRESS}ankieta/zaglosuj`, {
+      Id_uzytkownika: idUzytkownika,
+      Kod_roli: kodRoli,
+      IdAnkiety: id,
+      IdWyboru: choose,
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+  return res;
+};
