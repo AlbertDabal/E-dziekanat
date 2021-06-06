@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
 import PropTypes from 'prop-types';
+import Paragraph from 'components/atoms/Paragraph/Paragraph';
 
 const Wrapper = styled.div`
   display: flex;
@@ -41,6 +42,7 @@ const Line = styled.hr`
   margin-top: 20px;
   height: 1px;
   width: 80%;
+  margin-bottom: 20px;
   background-color: ${({ theme }) => theme.borderColor};
 `;
 
@@ -96,7 +98,7 @@ const ChangePassword = ({ props }) => {
             aktualizuj hasło
           </ButtonStyled>
           <Line />
-          <p>{errorPassChange}</p>
+          <Paragraph style={{ color: 'red' }}>{errorPassChange}</Paragraph>
         </Form>
       </Wrapper>
     </WellcomeTemplate>

@@ -42,13 +42,38 @@ const ButtonStyled = styled(Button)`
 const Line = styled.hr`
   margin-top: 20px;
   height: 1px;
+  margin-bottom: 20px;
   width: 80%;
   background-color: ${({ theme }) => theme.borderColor};
+`;
+
+const ShadowWrapper = styled.div`
+  position: absolute;
+  background-color: rgba(98, 98, 98, 0.5);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+`;
+
+const Modal = styled.div`
+  position: absolute;
+  top: 35%;
+  left: 30%;
+  width: 40%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 30px;
 `;
 
 const LostPassword = ({ match }) => {
   const [enteredUser, setEnteredUser] = useState('');
   const [Message, setMessage] = useState(null);
+  const [open, setOpen] = useState(false);
 
   // console.log('Entered User: ', enteredUser);
 
@@ -65,6 +90,11 @@ const LostPassword = ({ match }) => {
 
     const res = await SetLostPassword(data);
 
+    console.log(res);
+
+    if (res.data.Poprawnosc === true) {
+      setOpen(true);
+    }
     setMessage(res.data.Tresc);
   };
 
@@ -78,8 +108,15 @@ const LostPassword = ({ match }) => {
             odzyskaj
           </ButtonStyled>
           <Line />
-          <Paragraph>{Message}</Paragraph>
+          <Paragraph style={{ color: 'red' }}>{Message}</Paragraph>
         </Form>
+        {open && (
+          <ShadowWrapper>
+            <Modal>
+              <Paragraph>Na twój adres email została wysłana wiadomość z linkiem do resetu hasła</Paragraph>
+            </Modal>
+          </ShadowWrapper>
+        )}
       </Wrapper>
     </WellcomeTemplate>
   );
