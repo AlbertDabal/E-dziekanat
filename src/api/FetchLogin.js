@@ -29,3 +29,16 @@ export const SetLostPassword = async (data) => {
 
   return res;
 };
+
+export const SetChangePassword = async (kod, haslo) => {
+  const res = await axios
+    .post(`${process.env.REACT_APP_ADDRESS}logowanie/zmien_haslo`, {
+      Wygenerowany_kod: kod,
+      Password: haslo,
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+  return res;
+};

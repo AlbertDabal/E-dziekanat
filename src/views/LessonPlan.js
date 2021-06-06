@@ -28,6 +28,7 @@ const LesssonPlan = () => {
 
   useEffect(() => {
     FetchPlanCurrent();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function FetchSelectDefult() {

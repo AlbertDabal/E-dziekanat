@@ -1,11 +1,8 @@
-import Alert from 'components/atoms/Alert/Alert';
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Button from 'components/atoms/Button/Button';
 import { Link } from 'react-router-dom';
-import { FaTachometerAlt } from 'react-icons/fa';
 
 const Wrapper = styled.div`
   display: flex;
@@ -43,7 +40,6 @@ const Pooltems = ({ tresc, data, autor, id, wybor }) => (
     <Paragraph style={{ width: '10%' }}>{data.substr(0, 10)}</Paragraph>
     <Paragraph style={{ width: '32%' }}>{tresc}</Paragraph>
     <Paragraph style={{ width: '22%' }}>{autor}</Paragraph>
-    {console.log(wybor)}
     {wybor === 0 ? (
       <StyledLink to={`/pools/${id}`} style={{ width: '10%' }}>
         WYPEŁNIJ

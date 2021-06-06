@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { SetNews } from 'api/FetchNews';
 import NewsItem from 'components/organism/News/NewsItem';
 import DashboardTemplate from 'templates/DashboardTemplate';
@@ -27,7 +26,6 @@ const News = () => {
 
   async function FetchNews() {
     const res = await SetNews();
-    console.log(res.data.TopListAktualnosciPowiadomien);
     setDataNews(res.data.TopListAktualnosciPowiadomien);
   }
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import DashboardTemplate from 'templates/DashboardTemplate';
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
@@ -54,12 +54,7 @@ const ParagraphStyled = styled(Paragraph)`
 `;
 
 const Settings = () => {
-  const [errorPassChange, setErrorPassChange] = useState(null);
-  const [enteredPassword, setEnteredPassword] = useState('');
-
-  const PasswordCatcher = (event) => {
-    setEnteredPassword(event.target.value);
-  };
+  const PasswordCatcher = (event) => {};
 
   const ChangePasswordHandler = (event) => {
     event.preventDefault();

@@ -1,7 +1,7 @@
 import Heading from 'components/atoms/Heading/Heading';
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { nanoid } from 'nanoid';
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
 import LessonPlanItem from './LessonPlanItem';

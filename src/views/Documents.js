@@ -48,10 +48,9 @@ const Documents = () => {
 
   async function FetchDocuments() {
     const res = await SetDocuments();
-    console.log(res.data.TopListDokumentow);
+
     setDataDocuments(res.data.TopListDokumentow);
   }
-  console.log(dataDocuments);
 
   return (
     <DashboardTemplate>

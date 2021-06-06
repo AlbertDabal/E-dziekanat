@@ -11,7 +11,6 @@ import ChangePassword from 'views/ChangePassword';
 import Dashboard from 'views/Dashboard';
 import LessonPlan from 'views/LessonPlan';
 import News from 'views/News';
-import NewsBig from 'views/NewsBig';
 import Documents from 'views/Documents';
 import Wellcome from 'views/Wellcome';
 import Settings from 'views/Settings';

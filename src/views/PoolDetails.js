@@ -7,7 +7,6 @@ import styled from 'styled-components';
 import Heading from 'components/atoms/Heading/Heading';
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
 import Button from 'components/atoms/Button/Button';
-import Input from 'components/atoms/Input/Input';
 import PoolModal from 'components/organism/Pool/PoolModal';
 
 const Container = styled.div`
@@ -73,6 +72,7 @@ const PoolDetails = ({ match }) => {
 
   useEffect(() => {
     FetchDetails();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [update]);
 
   async function FetchDetails() {

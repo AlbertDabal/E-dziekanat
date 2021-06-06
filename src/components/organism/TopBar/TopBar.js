@@ -1,5 +1,5 @@
 import Heading from 'components/atoms/Heading/Heading';
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import NavigationMainData from 'data/NavigationMainData';
 import NavigationAdditionalData from 'components/organism/Navigation/NavigationAdditionalData';
@@ -67,8 +67,6 @@ const TopBar = ({ pools }) => {
   } else {
     pathName = NavigationMainData.filter((item) => item.path === location);
   }
-
-  console.log(pathName);
 
   return (
     <Wrapper>
