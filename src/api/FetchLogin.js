@@ -1,8 +1,11 @@
 import axios from 'axios';
 
+const port = 80;
+axios.defaults.baseURL = `${window.location.protocol}//${window.location.hostname}:${port}`;
+
 export const SetLogin = async (login, password, match) => {
   const res = await axios
-    .post(`${process.env.REACT_APP_ADDRESS}logowanie/zaloguj`, {
+    .post('/api/logowanie/zaloguj', {
       login,
       password,
       kod_roli: match,
@@ -23,7 +26,7 @@ export const SetLogin = async (login, password, match) => {
 };
 
 export const SetLostPassword = async (data) => {
-  const res = await axios.post(`${process.env.REACT_APP_ADDRESS}logowanie/przypomnij_haslo`, data).catch((error) => {
+  const res = await axios.post('/api/logowanie/przypomnij_haslo', data).catch((error) => {
     console.log(error);
   });
 
@@ -32,7 +35,7 @@ export const SetLostPassword = async (data) => {
 
 export const SetChangePassword = async (kod, haslo) => {
   const res = await axios
-    .post(`${process.env.REACT_APP_ADDRESS}logowanie/zmien_haslo`, {
+    .post('/api/logowanie/zmien_haslo', {
       Wygenerowany_kod: kod,
       Password: haslo,
     })
