@@ -29,7 +29,7 @@ https://github.com/Gameplayer8850/E-Dziekanat
 
 ### Dynamiczne powiadomienia
 
--Jeśli plan lekcji zostanie zmieniony pojawi się nowe powiadomienie
+- Jeśli plan lekcji zostanie zmieniony pojawi się nowe powiadomienie
 
 ### Aktualności
 
