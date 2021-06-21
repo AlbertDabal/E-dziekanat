@@ -4,6 +4,9 @@ import styled from 'styled-components';
 import Input from 'components/atoms/Input/Input';
 import Button from 'components/atoms/Button/Button';
 import PropTypes from 'prop-types';
+import Paragraph from 'components/atoms/Paragraph/Paragraph';
+import { SetChangePassword } from 'api/FetchLogin';
+import { useHistory } from 'react-router-dom';
 
 const Wrapper = styled.div`
   display: flex;
@@ -41,13 +44,15 @@ const Line = styled.hr`
   margin-top: 20px;
   height: 1px;
   width: 80%;
+  margin-bottom: 20px;
   background-color: ${({ theme }) => theme.borderColor};
 `;
 
-const ChangePassword = ({ props }) => {
+const ChangePassword = ({ match }) => {
   const [errorPassChange, setErrorPassChange] = useState(null);
   const [enteredPassword, setEnteredPassword] = useState('');
   const [enteredPasswordConfirm, setEnteredPasswordConfirm] = useState('');
+  const history = useHistory();
 
   const PasswordCatcher = (event) => {
     setEnteredPassword(event.target.value);
@@ -64,21 +69,30 @@ const ChangePassword = ({ props }) => {
 
     if (passwordFirst === '' || passwordSecond === '') {
       setErrorPassChange('Pole hasła nie może być puste');
-      console.log('Puste pole hasła');
     } else if (passwordFirst !== passwordSecond) {
       setErrorPassChange('Wpisane hasła róznią się');
-      console.log('Hasła różnią się');
-    } else if (passwordFirst.length < 8 || passwordSecond.length < 8) {
+    } else if (passwordFirst.length < 7 || passwordSecond.length < 7) {
       setErrorPassChange('Hasło za krótkie');
-      console.log('Hasło za krótkie');
     } else if (passwordFirst.length > 15 || passwordSecond.length > 15) {
       setErrorPassChange('Hasło za dlugie');
-      console.log('Hasło za dlugie');
     } else {
-      console.log('Hasła poprawne');
-      // history.pushState('/');
+      ChangePasswordData(passwordFirst);
     }
   };
+
+  async function ChangePasswordData(passwordFirst) {
+    const res = await SetChangePassword(match.params.id, passwordFirst);
+    try {
+      console.log(res);
+      if (res.data.Poprawnosc === true) {
+        history.push('/');
+      } else {
+        setErrorPassChange(res.data.Tresc);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   const ChangePasswordHandler = (event) => {
     event.preventDefault();
@@ -96,7 +110,7 @@ const ChangePassword = ({ props }) => {
             aktualizuj hasło
           </ButtonStyled>
           <Line />
-          <p>{errorPassChange}</p>
+          <Paragraph style={{ color: 'red' }}>{errorPassChange}</Paragraph>
         </Form>
       </Wrapper>
     </WellcomeTemplate>
@@ -104,7 +118,11 @@ const ChangePassword = ({ props }) => {
 };
 
 ChangePassword.propTypes = {
-  props: PropTypes.arrayOf(PropTypes.object).isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.node,
+    }).isRequired,
+  }).isRequired,
 };
 
 export default ChangePassword;

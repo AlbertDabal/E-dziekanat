@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import DashboardTemplate from 'templates/DashboardTemplate';
 import { SetPools } from 'api/FetchPolls';
-import Heading from 'components/atoms/Heading/Heading';
 import styled from 'styled-components';
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
 import Pooltems from 'components/organism/Pool/Pooltems';
-import PropTypes from 'prop-types';
-import Button from 'components/atoms/Button/Button';
 
 const WrapperTop = styled.div`
   display: flex;

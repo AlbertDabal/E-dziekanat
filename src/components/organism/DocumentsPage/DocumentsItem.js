@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
-import { DownloadDocuments } from 'api/FetchDocuments';
 import { formatDataTest } from 'function/FormatDatePl';
 import { AiOutlineDownload } from 'react-icons/ai';
 
@@ -59,11 +58,6 @@ const Download = styled.div`
   }
 `;
 
-const Przeniesienie = styled.a`
-  width: 100%;
-  background-color: red;
-`;
-
 const StyledParagraph = styled(Paragraph)`
   font-size: 14px;
   line-height: 17px;
@@ -72,10 +66,6 @@ const StyledParagraph = styled(Paragraph)`
 const DocumentsItem = ({ Nazwa, Datamody, Dataupl, Przesylajacy, Downloader }) => {
   const daty = formatDataTest(Datamody);
   const datyy = formatDataTest(Dataupl);
-
-  async function DownloadItem() {
-    const res = await DownloadDocuments();
-  }
 
   return (
     <Wrapper onClick={() => console.log('Clicked')}>
@@ -95,7 +85,7 @@ const DocumentsItem = ({ Nazwa, Datamody, Dataupl, Przesylajacy, Downloader }) =
       </Owner>
       <Download>
         <a href={Downloader}>
-          <AiOutlineDownload onClick={() => DownloadItem()} />
+          <AiOutlineDownload />
         </a>
       </Download>
     </Wrapper>

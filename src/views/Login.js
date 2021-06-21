@@ -5,7 +5,7 @@ import Input from 'components/atoms/Input/Input';
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
 import Button from 'components/atoms/Button/Button';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { SetLogin } from 'api/FetchLogin';
 
 const Wrapper = styled.div`
@@ -26,10 +26,19 @@ const InputStyled = styled(Input)`
   margin-top: 40px;
 `;
 
-const LinkStyled = styled(Paragraph)`
+const ParagraphStyled = styled(Paragraph)`
   margin-top: 20px;
   font-weight: 400;
   cursor: pointer;
+`;
+
+const StyledLink = styled(Link)`
+  margin-top: 20px;
+  font-weight: 400;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: ${({ theme, data }) => (data ? theme.fontSize.sxx : theme.fontSize.sx)};
+  color: black;
 `;
 
 const Form = styled.form`
@@ -87,11 +96,10 @@ const Login = ({ match }) => {
           </ButtonStyled>
           <Line />
 
-          <LinkStyled>Nie pamiętasz Hasła?</LinkStyled>
-          <LinkStyled>Nie pamiętasz Nazwy Użytkownika?</LinkStyled>
+          <StyledLink to="/lostpassword">Nie pamiętasz Nazwy Użytkownika lub hasła?</StyledLink>
           {errorLogin && (
             <>
-              <LinkStyled style={{ color: 'red' }}>{errorLogin}</LinkStyled>
+              <ParagraphStyled style={{ color: 'red' }}>{errorLogin}</ParagraphStyled>
               <br />
             </>
           )}

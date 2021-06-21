@@ -2,9 +2,12 @@ import axios from 'axios';
 
 import FileDownload from 'js-file-download';
 
+const port = 80;
+axios.defaults.baseURL = `${window.location.protocol}//${window.location.hostname}:${port}`;
+
 export const SetDocuments = async () => {
   const res = await axios
-    .post(`${process.env.REACT_APP_ADDRESS}dokumenty`, {
+    .post('/api/dokumenty', {
       Ilosc: 10,
     })
     .catch((error) => {
@@ -16,7 +19,7 @@ export const SetDocuments = async () => {
 
 export const DownloadDocuments = async () => {
   axios({
-    url: `${process.env.REACT_APP_ADDRESS}dokumenty/pobierz`,
+    url: '/api/dokumenty/pobierz',
     method: 'GET',
     body: {
       Id_dokumentu: 14,

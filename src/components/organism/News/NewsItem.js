@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import logo from 'images/backgroud.jpg';
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
-import NewsBig from 'views/NewsBig';
 import { formatDataTest } from 'function/FormatDatePl';
 
 const Wrapper = styled.div`
@@ -77,7 +76,7 @@ const NewsItem = ({ data, tytul, tekst }) => {
   const date = formatDataTest(data);
 
   return (
-    <Wrapper onClick={() => console.log('Clicked')}>
+    <Wrapper>
       <LogoImage src={logo} />
       <Bottom>
         <Datee>

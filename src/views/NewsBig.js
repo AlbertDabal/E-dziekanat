@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import NewsTemplate from 'templates/NewsTemplate';
-
 import logo from 'images/backgroud.jpg';
 import Button from 'components/atoms/Button/Button';
 import { formatDataTest } from 'function/FormatDatePl';

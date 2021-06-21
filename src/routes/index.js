@@ -2,7 +2,7 @@ export const routes = {
   wellcome: '/',
   login: '/login/:id',
   lostPassword: '/lostpassword',
-  changePassword: '/changepassword',
+  changePassword: '/changepassword/:id',
   dashboard: '/dashboard',
   lessonPlan: '/plan',
   news: '/news',

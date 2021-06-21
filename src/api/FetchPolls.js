@@ -1,11 +1,14 @@
 import axios from 'axios';
 
+const port = 80;
+axios.defaults.baseURL = `${window.location.protocol}//${window.location.hostname}:${port}`;
+
 export const SetPools = async () => {
   const idUzytkownika = sessionStorage.getItem('Id_uzytkownika');
   const kodRoli = sessionStorage.getItem('Kod_roli');
 
   const res = await axios
-    .post(`${process.env.REACT_APP_ADDRESS}ankieta/lista_ankiet`, {
+    .post('/api/ankieta/lista_ankiet', {
       Id_uzytkownika: idUzytkownika,
       Kod_roli: kodRoli,
     })
@@ -21,7 +24,7 @@ export const SetPoolsDetails = async (id) => {
   const kodRoli = sessionStorage.getItem('Kod_roli');
 
   const res = await axios
-    .post(`${process.env.REACT_APP_ADDRESS}ankieta/ankieta`, {
+    .post('/api/ankieta/ankieta', {
       Id_uzytkownika: idUzytkownika,
       Kod_roli: kodRoli,
       IdAnkiety: id,
@@ -38,7 +41,7 @@ export const PoolsSubmit = async (id, choose) => {
   const kodRoli = sessionStorage.getItem('Kod_roli');
 
   const res = await axios
-    .post(`${process.env.REACT_APP_ADDRESS}ankieta/zaglosuj`, {
+    .post('/api/ankieta/zaglosuj', {
       Id_uzytkownika: idUzytkownika,
       Kod_roli: kodRoli,
       IdAnkiety: id,
@@ -56,7 +59,7 @@ export const NewAnswerPool = async (id, tresc) => {
   const kodRoli = sessionStorage.getItem('Kod_roli');
 
   const res = await axios
-    .post(`${process.env.REACT_APP_ADDRESS}ankieta/wlasna_odpowiedz`, {
+    .post('/api/ankieta/wlasna_odpowiedz', {
       Id_uzytkownika: idUzytkownika,
       Kod_roli: kodRoli,
       IdAnkiety: id,

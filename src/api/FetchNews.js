@@ -1,8 +1,11 @@
 import axios from 'axios';
 
+const port = 80;
+axios.defaults.baseURL = `${window.location.protocol}//${window.location.hostname}:${port}`;
+
 export const SetNews = async () => {
   const res = await axios
-    .post(`${process.env.REACT_APP_ADDRESS}aktualnosci`, {
+    .post('/api/aktualnosci', {
       Ilosc: 4,
     })
     .catch((error) => {
